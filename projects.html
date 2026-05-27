@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="root.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap');
+    @import url('https://unpkg.com/@hackernoon/pixel-icon-library/fonts/iconfont.css');
+
+
+  /* font-family: "Love Ya Like A Sister", cursive; */
+@font-face {
+  font-family: 'circular';
+  src: url('circular-std-medium-500.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves loading performance */
+} 
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none !important; /* hide default cursor */
+  user-select: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-color);
+  /* background-image: url("bg.png"); */
+  /* background-image: url("010.png"); */
+  /* filter: invert(1); */
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  color: #000000;
+  font-family: 'circular', normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bg {
+  height: 100vh;
+  width: 100vw;
+  /* background-image: url("bg.png"); */
+  background-image: url("005.png");
+  /* background-image: url("noisegif.gif"); */
+  /* filter: invert(1); */
+  opacity: 1;
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  mix-blend-mode: overlay;
+  position: absolute;
+  z-index: -99999999;
+}
+
+
+ #screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; /* allow 3D rotation */
+  overflow: visible;    /* prevent clipping */
+}
+
+#screen {
+  transform-origin: top left;
+  transform: scale(
+    clamp(
+      0.7,
+      min(100vw / 1920, 100vh / 1080),
+      1
+    )
+  );
+}
+
+/* Top nav */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: #000000;
+  z-index: 10;
+}
+
+
+@media (max-width: 1300px) {
+  .top-nav {
+    font-size: 0.6rem;
+  }
+}
+
+.top-nav .portfolio-info {
+  text-align: right;
+  line-height: 1.2;
+}
+
+
+/* Side nav */
+.side-nav {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5vw;
+  color: #0ff;
+  z-index: 10;
+}
+.side-nav a {
+  color: #0ff;
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.side-nav a:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 8px var(--accent-color);
+}
+
+    /* Side Navbar */
+nav {
+  position: fixed;
+  top: 50%;
+  left: -1rem; /* small offset from edge */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center links so rotation looks uniform */
+  gap: 7rem; /* smaller, more visually even */
+  font-size: 0.5vw;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+@media (max-width: 1300px) {
+  nav {
+    font-size: 0.4rem;
+  }
+}
+
+nav a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  user-select: none;
+  transform: rotate(-90deg);
+  display: inline-block; /* ensures padding works correctly */
+  /*padding: 10px;  correct syntax */
+  padding: 3px;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 8px var(--accent-color);
+}
+
+
+
+/* Side Navbar */
+.socials {
+  position: fixed;
+  top: 50%;
+  left: 100%; /* small offset from edge */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center links so rotation looks uniform */
+  gap: 2.5rem; /* smaller, more visually even */
+  text-transform: uppercase;
+  z-index: 10;
+  margin-left: -4rem;
+}
+
+.socials a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  user-select: none;
+  display: inline-block;
+  padding: 3px;
+  border: 2px solid rgba(0,0,0,0);
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+}
+
+.socials a:hover {
+  border-color: black;
+}
+
+.socials i {
+  font-size: 1.5rem;
+  align-items: center;
+  /* width: 1.5rem;
+  height: 1.5rem; */
+  border: 0px solid black;
+}
+
+
+  /* Custom 8-bit cursor */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  width: var(--cursor-size, 24px);
+  height: var(--cursor-size, 24px);
+  background-image: var(--cursor-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  image-rendering: pixelated;
+  transform: translate(-100px, -100px);
+  will-change: transform, background-image;
+}
+/* Click particles */
+.particle {
+  position: fixed;
+  width: 100px; /* bigger for impact */
+  height: 100px;
+  /* background: #ff00ff; */
+  background: #ffffff;
+  /* image-rendering: pixelated; */
+  pointer-events: none;
+  z-index: 99999;
+  /* filter: invert(1) brightness(2); */
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border: 2px solid #000000;
+  border-radius: 50%; /* makes it a circle */
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 99999;
+}
+
+
+.card-stack {
+  width: 20vw;
+  height: 20vw;
+  position: relative;
+  display: grid;
+  place-content: center;
+  user-select: none;
+  touch-action: none;
+  transform-style: preserve-3d;
+  z-index: 100;
+}
+
+:root {
+  --card-perspective: 1000px;
+  --card-z-offset: 32px;
+  --card-y-offset: -1vw;
+  --card-max-z-index: 100;
+  --card-swap-duration: 0.3s;
+  --swipe-y: 0px;
+  --swipe-rotate-x: 0deg;
+}
+
+.card {
+  cursor: grab;
+  /* background-color: #eee; */
+  display: grid;
+  place-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #99a;
+  border-radius: 0.3rem;
+  z-index: calc(var(--card-max-z-index) - var(--i));
+  transform: perspective(var(--card-perspective))
+    translateZ(calc(-1 * var(--card-z-offset) * var(--i)))
+    translateY(calc(var(--card-y-offset) * var(--i) + var(--swipe-y, 0px)))
+    rotateX(var(--swipe-rotate-x, 0deg));
+  transition: transform var(--card-swap-duration) ease, opacity var(--card-swap-duration) ease;
+  will-change: transform;
+  /* box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15); */
+  border: 2px solid rgba(0, 0, 0,1);
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes it fill the card without stretching */
+  pointer-events: none; /* prevents blocking clicks/drag */
+}
+
+/* background image (bottom layer) */
+.card-bg {
+  mix-blend-mode: normal;
+  z-index: 1;
+  /* filter: url("#pixelateStr3") saturate(1); */
+}
+
+/* noise texture overlay */
+.card-noise {
+  --noise: url("https://music.manz.dev/images/noise.png");
+  --shine: linear-gradient(130deg, transparent 80%, #5554 90%, transparent 100%);
+  background: #0c0c0c;
+  background-image: var(--shine), var(--noise);
+  background-blend-mode: lighten, soft-light;
+  opacity: 0.1; /* tweak if needed */
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+/* plastic texture overlay */
+.card-overlay {
+    position: absolute;
+  /* mix-blend-mode: exclusion; */
+  opacity: 1; /* tweak if needed */
+  z-index: 3;
+  background: url("PLASTIC_WRAP.png");
+  width: 100%;
+  height: 100%;
+}
+
+.num-pos {
+  visibility: hidden;
+  position: absolute;
+  /* mix-blend-mode: exclusion; */
+  opacity: 1; /* tweak if needed */
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  font-family: "Love Ya Like A Sister", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 100px;
+  /* color: #f0f; */
+  /* text-shadow: 0 0 18px rgb(255, 103, 255); */
+  text-align: right;
+  align-items: center;
+  display: flex;
+  justify-content: right;
+  top: -35%;
+  left: -5%;
+}
+
+.vinyl-divider {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #000;
+  inset: 0;
+}
+
+.vinyl-divider-header {
+  z-index: -10;
+  width: 7vw;
+  height: 1.1vw;
+  position: absolute;
+  background-color: var(--color,0);
+  top: -1.1vw;
+  left: var(--divider-left, 0);
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
+  border-radius: 10px 10px 0px 0px;
+}
+
+.vinyl-divider-header span {
+  font-family: 'Press Start 2P', cursive;
+  padding-top: 0.2vw;
+  font-size: 0.5vw; /* readable on all screens */
+  font-weight: 100;
+  color: var(--bg-color);
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap; /* prevent wrapping in small header */
+}
+
+
+/* .a { background: linear-gradient(45deg, #32de84, #deb); }
+.b { background: linear-gradient(45deg, #cf8bf3, #fdb99b); }
+.c { background: linear-gradient(45deg, #ea52ca, #8ed5f0); }
+.d { background: linear-gradient(45deg, #967edf, #89ffe3); }
+.e { background: linear-gradient(45deg, #4ecde2, #faffd2); }
+.f { background: linear-gradient(45deg, #a4ffbd, #ffd89b); } */
+
+.shadow {
+  position: absolute;
+  bottom: -10vw;         /* slightly below card */
+  left: 50%;           /* center horizontally */
+  transform: translateX(-50%) rotateX(90deg); 
+  width: 90%;          /* relative to card width */
+  height: 10vw;        /* thin oval shadow */
+  background: rgba(0,0,0,.1);
+  border-radius: 50px;
+  z-index: 1;           /* behind icon/content */
+  filter: blur(50px);    /* softer shadow */
+  pointer-events: none; /* ignore for interaction */
+}
+
+
+/* Info Panels */
+.info-panels {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  perspective: 1000px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.info {
+  position: absolute;
+  display: flex; /* keep it flex for alignment */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(-200%); /* slide back up when hiding */
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+	transform-style: preserve-3d;
+  overflow: visible;
+}
+
+.info.visible {
+	transform-style: preserve-3d;
+  overflow: visible;
+
+  opacity: 1;
+  transform: translateY(0); /* slide to normal position */
+}
+
+.info.hiding {
+		transform-style: preserve-3d;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(-200%); /* slide back up when hiding */
+}
+
+.left-panel,
+.right-panel {
+  position: relative;
+  height: 25vw;
+  /* width: 25vw; */
+  aspect-ratio: 1;
+  min-height: 30vh;
+  border-radius: 0.2vw;
+  background-color: rgba(0,0,0,0.025); 
+  /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05); */
+  backface-visibility: hidden;
+  pointer-events: auto;
+  user-select: all;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  /* border: 1px solid rgba(196, 193, 193, 0.1); */
+  /* border: 1px solid black; */
+}
+
+.left-panel {
+	transform: translateX(-60%) rotateY(0deg); 
+	animation: rotateLeftAfterInfo 2s ease-in-out;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+  color: #000;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.right-panel {
+	transform: translateX(60%) rotateY(0deg);
+  animation: rotateRightAfterInfo 2s ease-in-out;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0rem 0rem;
+  color: #000;
+  /* overflow: hidden; */
+}
+@keyframes rotateLeftAfterInfo {
+  from { transform: translateX(-60%) rotateY(0deg); }
+  to   { transform: translateX(-60%) rotateY(10deg); } /* final tilt */
+}
+@keyframes rotateRightAfterInfo {
+  from { transform: translateX(60%) rotateY(0deg); }
+  to   { transform: translateX(60%) rotateY(-10deg); } /* final tilt */
+}
+
+.shadow-left-panel {
+	position: absolute;
+	bottom: -15%; /* slightly below card */
+	left: 50%; /* center horizontally */
+	transform: translateX(-50%);
+	width: 90%; /* relative to card width */
+	height: 3rem; /* thin oval shadow */
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 50%;
+	z-index: -1; /* behind icon/content */
+	filter: blur(20px); /* softer shadow */
+	pointer-events: none; /* ignore for interaction */
+}
+
+.shadow-right-panel {
+	position: absolute;
+	bottom: -15%; /* slightly below card */
+	left: 50%; /* center horizontally */
+	transform: translateX(-50%);
+	width: 90%; /* relative to card width */
+	height: 3rem; /* thin oval shadow */
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 50%;
+	z-index: -1; /* behind icon/content */
+	filter: blur(20px); /* softer shadow */
+	pointer-events: none; /* ignore for interaction */
+}
+
+.box {
+	top: 40%;
+	width: 20vw;
+	height: 20vw;
+	position: relative;
+	transform-style: preserve-3d;
+	perspective: 1000px;
+	transform: rotateX(0deg) translateZ(0px) scaleX(1) scaleZ(1);
+}
+
+/* Shared styles for all faces */
+.box > div {
+	position: absolute;
+	/* 	background: rgba(100, 150, 255, 0.7); */
+	/* 	background: rgba(255, 255, 255, 1); */
+	border: 2px solid rgba(0,0,0,.1);
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: #fff;
+  border-radius: 2px 2px 4px 4px;
+}
+
+/* Front face */
+.front {
+	transform: translateZ(0rem) scale(1);
+	z-index: 7;
+	background: red;
+	width: 20vw;
+	height: 11vw;
+	background: var(--bg-color);
+  box-shadow: inset 0 -10px 50px rgba(0,0,0,.1);
+  filter: brightness(0.99);
+}
+
+.texture {
+  height: 100%;
+  width: 100%;
+  /* background-image: url("bg.png"); */
+  background-image: url("005.png");
+  /* filter: invert(1); */
+  opacity: 1;
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  mix-blend-mode: overlay;
+  position: absolute;
+  z-index: 0;
+}
+
+.texture::after {
+  content: '';
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  /* background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 50%); */
+}
+
+/* Left face */
+.left {
+	width: 6vw;
+	height: 11vw;
+	transform: rotateY(90deg) translateZ(-3vw) translateX(3vw) skewY(-30deg)
+		translateY(-1.7vw);
+	z-index: -2;
+	background: blue;
+	filter: brightness(0.75);
+	background: var(--bg-color);
+  box-shadow: inset 15px -10px 70px rgba(0,0,0,.5);
+}
+
+/* Right face */
+.right {
+	width: 6vw;
+	height: 11vw;
+	transform: rotateY(90deg) translateZ(17vw) translateX(3vw) skewY(-30deg)
+		translateY(-1.7vw);
+	z-index: -2;
+	background: blue;
+	filter: brightness(0.75);
+	background: var(--bg-color);
+  box-shadow: inset 15px -10px 70px rgba(0,0,0,.5);
+}
+
+/* ------------------------------ */
+/* PROFESSIONAL PANEL CONTENT     */
+/* ------------------------------ */
+
+/* Title */
+.title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5vw;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  padding: 2rem 2.5rem 0.5rem 2.5rem;
+  letter-spacing: 1px;
+  /* text-shadow: 0 3px 6px rgba(0,0,0,0.25); */
+}
+
+/* Subtitle */
+.subtitle {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5vw;
+  font-weight: 300;
+  opacity: 0.85;
+  text-align: left;
+  padding: 0 2.5rem 1rem 2.5rem;
+  opacity: .75;
+}
+
+.white-text {
+  color: var(--bg-color);
+  border-color: var(--bg-color);
+}
+
+/* Description text */
+.left-panel p {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6vw;
+  font-weight: 300;
+  line-height: 1.6;
+  padding: 0 2.5rem;
+  margin-top: 1rem;
+  opacity: 0.8;
+}
+
+.proj-link-cont {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 5%;
+  padding: 5% 11%;
+  justify-items: stretch;
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+}
+
+
+/* Links */
+.left-panel a {
+  display: flex;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5vw;
+  /* padding: 2.25rem 4rem; */
+  width: 100%;
+  height: 4vw;
+  border-radius: 0.2vw;
+  text-decoration: none;
+  backdrop-filter: blur(5px);
+  transition: all 0.25s ease;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button with animated neon fill */
+.left-panel a {
+  position: relative;  /* needed for ::before */
+  overflow: hidden;    /* contain fill effect */
+  /* background: var(--bg-color); */
+  cursor: none;
+  /* box-shadow: 0 0 20px rgb(12, 12, 12, .75); */
+  transition: color 0.3s, box-shadow 0.3s;
+}
+
+.left-panel a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.left-panel a:hover {
+  box-shadow: 0 0 20px rgb(12, 12, 12, .25);
+}
+
+.left-panel a:hover::before {
+  left: 0;
+}
+
+/* Links */
+.white-text a {
+  background: rgba(255, 255, 255, 0);
+  border: 1px solid var(--bg-color);
+  color: var(--bg-color);
+}
+
+/* Button with animated neon fill */
+.white-text a {
+  color: var(--bg-color);
+}
+
+.white-text a::before {
+  background: var(--bg-color);
+}
+
+.white-text a:hover {
+  color: rgb(0, 0, 0);
+}
+
+.black-text a {
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+}
+
+/* Button with animated neon fill */
+.black-text a {
+  color: rgb(0, 0, 0);
+}
+
+.black-text a::before {
+  background: rgb(0, 0, 0);
+}
+
+.black-text a:hover {
+  color: var(--bg-color);
+}
+
+/* ------------------------------ */
+/* RIGHT PANEL STYLING            */
+/* ------------------------------ */
+
+/* Optional project media preview */
+.right-panel .media {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.3rem;
+  background: rgba(0, 0, 0, 0);
+  /* border: 1px solid black; */
+  /* backdrop-filter: blur(5px); */
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,.0);
+  /* margin-bottom: 1.5rem; */
+  filter: grayscale(1);
+  mask: url(#blobMask);
+  -webkit-mask: url(#blobMask);
+  /* Apply the blob filter to distort the mask edge */
+}
+
+
+.blob-border-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* If using an image */
+.right-panel .media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* If using a video */
+.right-panel .media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right panel text area */
+.right-panel .details {
+  width: 90%;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.vinyl-record {
+  position: absolute;
+  width: 98.4%;
+  height: 98.9%;
+  top: 0.55%;
+  border-radius: 100%;
+  background-image: url("vinyltexture.png");
+  background-size: cover;
+  /* filter: hue-rotate(210deg); */
+}
+
+.record-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 34%;
+  height: 34%;
+  background-color: var(--bg-color);
+  border-radius: 100%;
+  /* visibility: hidden; */
+}
+
+.media-vinyl-center {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background: rgba(0, 0, 0, 0);
+  /* border: 1px solid black; */
+  /* backdrop-filter: blur(5px); */
+  overflow: hidden;
+  /* margin-bottom: 1.5rem; */
+  /* filter: grayscale(1) brightness(0.75); */
+}
+
+.media-vinyl-center img{
+  /* position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 25vw;
+  height: 25vw; */
+  width: 100%;
+  height: 100%;
+}
+
+.vinyl-cover-texture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("VinylCoverTexture.png");
+  background-size: cover;
+}
+
+.vinyl-center-texture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("vinylcentertexture.png");
+  background-size: cover;
+}
+
+.media .small {
+  background-color: var(--accent-color);
+}
+
+.vinyl-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -10;
+  opacity: .2;
+}
+
+.pixel-filter-svg {
+  position: absolute;
+  pointer-events: none;
+}
+
+
+.cursor-hint {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(10px, -25px); /* offset right + up */
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.3rem;
+
+  background: rgba(0, 0, 0, 1);
+  color: #D9D9D9;
+  /* backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); */
+
+  pointer-events: none; /* VERY IMPORTANT */
+  z-index: 9999;
+
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+  box-shadow: 0 5px 20px rgba(0,0,0,.2);
+
+  font-family: 'Press Start 2P', cursive;
+  font-weight: 3d00;
+  font-size: 0.75rem;
+  text-align: left;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.vinyl-back-desc {
+  width: 88%;
+  height: 68%;
+  /* border: 2px solid red; */
+  margin: 6% 6% 0% 6%;
+  padding: 0% 5%;
+}
+
+.side-a {
+  width: 100%;
+  height: 50%;
+  /* border: 2px solid green; */
+}
+
+.side-b {
+  width: 100%;
+  height: 50%;
+  /* border: 2px solid blue; */
+}
+
+.vinyl-back-desc h1{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1vw;
+  text-transform: uppercase;
+  border-bottom: 2px solid;
+  padding-bottom: 2%;
+}
+
+.vinyl-back-desc li{
+  font-family: 'Press Start 2P', cursive;
+  font-size: .5vw;
+  list-style-type: none;
+  line-height: 250%;
+  margin-top: 2%;
+}
+
+.side-a h1{
+  justify-content: left;
+  text-align: left;
+}
+
+.side-b h1{
+  justify-content: right;
+  text-align: right;
+}
+
+.side-b li{
+  text-align: right;
+}
+
+.card-title {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 15%;
+  transform: translatey(-50%);
+}
+
+.card-title h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3vw;
+  text-align: center;
+  text-shadow: 0px 2vw 0.75vw rgba(0, 0, 0, 0.15);
+  z-index: -1000;
+}
+
+.a .left-panel {
+  background-image: url("images/LightspeedBackArt.png");
+}
+
+.b .left-panel {
+  background-image: url("images/BLANK_VinylBackArt.png");
+}
+
+.c .left-panel {
+  background-image: url("images/BLANK_VinylBackArt.png");
+}
+
+.d .left-panel {
+  background-image: url("images/BLANK_VinylBackArt.png");
+}
+
+.e .left-panel {
+  background-image: url("images/BLANK_VinylBackArt.png");
+}
+
+
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<div id="top-nav"></div>
+
+  <div id="screen">
+  <section class="card-stack">
+    <div class="shadow"></div>
+    <div class="box">
+      <div class="front">
+          <div class="texture"></div>
+      </div>
+      <div class="left">
+        <div class="texture"></div>
+      </div>
+      <div class="right">
+        <div class="texture"></div>
+      </div>
+	  </div>
+    <article class="card a" style="--i: 0">
+      <div class="vinyl-divider">
+          <div class="vinyl-divider-header" style="--divider-left: -0.09vw; --color: #1d1a1a;">
+            <span>Web Dev</span>
+          </div>
+        </div>
+      <h1>Lightspeed</h1>
+      <!-- BACKGROUND IMAGE (fills entire card) -->
+      <img class="card-bg" src="images/LightspeedCoverArt.png" />
+      <!-- NOISE OVERLAY IMAGE -->
+      <img class="card-noise" src="https://music.manz.dev/images/noise.png" />
+      <!-- PLASTIC-LOOK OVERLAY IMAGE -->
+      <img class="card-overlay" src="PLASTIC_WRAP_1.png" />
+      <span class="num-pos">#1</span>
+    </article>
+    <article class="card b" style="--i: 1">
+      <h1>Portfolio</h1>
+      <!-- BACKGROUND IMAGE (fills entire card) -->
+      <img class="card-bg" src="images/BLANK_VinylCoverArt.png" />
+      <!-- NOISE OVERLAY IMAGE -->
+      <img class="card-noise" src="https://music.manz.dev/images/noise.png" />
+      <!-- PLASTIC-LOOK OVERLAY IMAGE -->
+      <img class="card-overlay" src="PLASTIC_WRAP_7.png" />
+      <span class="num-pos">#2</span>
+    </article>
+    <article class="card c" style="--i: 2;">
+      <div class="text-container">
+        <div class="vinyl-divider">
+          <div class="vinyl-divider-header" style="--divider-left: 12.9vw; --color: #201c1c;">
+            <span>App Dev</span>
+          </div>
+        </div>
+        <h1>MetaTune</h1>
+        <!-- BACKGROUND IMAGE (fills entire card) -->
+        <img class="card-bg" src="images/BLANK_VinylCoverArt.png" />
+        <!-- NOISE OVERLAY IMAGE -->
+        <img class="card-noise" src="https://music.manz.dev/images/noise.png" />
+        <!-- PLASTIC-LOOK OVERLAY IMAGE -->
+        <img class="card-overlay" src="PLASTIC_WRAP_5.png" />
+          <span class="num-pos">#3</span>
+      </div>
+    </article>
+    <article class="card d" style="--i: 3;">
+      <div class="text-container">
+        <h1>Prospecting Chance Calculator</h1>
+        <!-- BACKGROUND IMAGE (fills entire card) -->
+      <img class="card-bg" src="images/BLANK_VinylCoverArt.png" />
+      <!-- NOISE OVERLAY IMAGE -->
+      <img class="card-noise" src="https://music.manz.dev/images/noise.png" />
+      <!-- PLASTIC-LOOK OVERLAY IMAGE -->
+      <img class="card-overlay" src="PLASTIC_WRAP_6.png" />
+            <span class="num-pos">#4</span>
+      </div>
+    </article>
+    <article class="card e" style="--i: 4;">
+      <div class="text-container">
+        <div class="vinyl-divider">
+          <div class="vinyl-divider-header" style="--divider-left: 6.1vw; --color: #1b1a1a;">
+            <span>Game Dev</span>
+          </div>
+        </div>
+        <h1>Rush Hour</h1>
+        <!-- BACKGROUND IMAGE (fills entire card) -->
+      <img class="card-bg" src="images/BLANK_VinylCoverArt.png" />
+      <!-- NOISE OVERLAY IMAGE -->
+      <img class="card-noise" src="https://music.manz.dev/images/noise.png" />
+      <!-- PLASTIC-LOOK OVERLAY IMAGE -->
+      <img class="card-overlay" src="PLASTIC_WRAP_7.png" />
+            <span class="num-pos">#5</span>
+      </div>
+    </article>
+    <!-- <article class="card f" style="--i: 5">
+      <div class="text-container">
+        <h1>Album Deluxe</h 1>
+      </div>
+    </article> -->
+  </section>
+
+  <section class="info-panels">
+    <div class="info a">
+      <div class="card-title">
+        <h1>LIGHTSPEED</h1>
+      </div>
+      <div class="left-panel white-text">
+        <!-- <div class="vinyl-back">
+          <img src="bgdarknoise.png" class="cover">
+        </div> -->
+        <div class="shadow-left-panel"></div>
+        <!-- <h1 class="title">Rush Hour</h1>
+        <h6 class="subtitle">Made with Unity 2022–2026</h6>
+        <p>
+          Programming Language: C#
+          <br><br>
+        </p> -->
+        <div class="vinyl-back-desc">
+          <div class="side-a">
+            <h1>Side A</h1>
+            <li>
+              <ul>Realistic Driving</ul>
+              <ul>Aesthetic UI/UX</ul>
+              <ul>User Authentication</ul>
+              <ul>Online Competitiveness</ul>
+            </li>
+          </div>
+          <div class="side-b">
+            <h1>Side B</h1>
+            <li>
+              <ul>Utilized DOTWEEN</ul>
+              <ul>Made with Unity</ul>
+              <ul>Programmed in C#</ul>
+              <ul>2022-2026</ul>
+            </li>
+          </div>
+        </div>
+        <div class="proj-link-cont white-button">
+          <a href="lightspeed.html" target="_blank">SEE MORE</a> 
+          <a href="https://github.com/Jack-Villanova/Andromeda-Lightspeed">GITHUB</a> <!-- Make it open in a seperate window -->
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="shadow-right-panel"></div>
+          <div class="vinyl-record">
+            <div class="record-center">
+              <div class="media-vinyl-center">
+                <img src="images/LightspeedMiddleVinyl.png" />
+              </div>
+            </div>
+          </div>
+          <div class="vinyl-cover-texture"></div>
+      </div>
+    </div>
+    <div class="info b">
+      <div class="card-title">
+        <h1>COMING SOON</h1>
+      </div>
+      <div class="left-panel black-text">
+        <div class="shadow-left-panel"></div>
+        <div class="vinyl-back-desc">
+          <div class="side-a">
+          </div>
+          <div class="side-b">
+          </div>
+        </div>
+        <div class="proj-link-cont black-button">
+          <a href="blank.html" target="_blank">/ / /</a> 
+          <a href="#">/ / /</a>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="shadow-right-panel"></div>
+          <div class="vinyl-record">
+            <div class="record-center">
+              <div class="media-vinyl-center">
+                <img src="images/BLANK_Vinyl_Center.png" />
+              </div>
+            </div>
+          </div>
+          <div class="vinyl-cover-texture"></div>
+      </div>
+    </div>
+    <div class="info c">
+      <div class="card-title">
+        <h1>COMING SOON</h1>
+      </div>
+      <div class="left-panel black-text">
+        <div class="shadow-left-panel"></div>
+        <div class="vinyl-back-desc">
+          <div class="side-a">
+          </div>
+          <div class="side-b">
+          </div>
+        </div>
+        <div class="proj-link-cont black-button">
+          <a href="blank.html" target="_blank">/ / /</a> 
+          <a href="#">/ / /</a>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="shadow-right-panel"></div>
+          <div class="vinyl-record">
+            <div class="record-center">
+              <div class="media-vinyl-center">
+                <img src="images/BLANK_Vinyl_Center.png" />
+              </div>
+            </div>
+          </div>
+          <div class="vinyl-cover-texture"></div>
+      </div>
+    </div>
+    <div class="info d">
+      <div class="card-title">
+        <h1>COMING SOON</h1>
+      </div>
+      <div class="left-panel black-text">
+        <div class="shadow-left-panel"></div>
+        <div class="vinyl-back-desc">
+          <div class="side-a">
+          </div>
+          <div class="side-b">
+          </div>
+        </div>
+        <div class="proj-link-cont black-button">
+          <a href="blank.html" target="_blank">/ / /</a> 
+          <a href="#">/ / /</a>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="shadow-right-panel"></div>
+          <div class="vinyl-record">
+            <div class="record-center">
+              <div class="media-vinyl-center">
+                <img src="images/BLANK_Vinyl_Center.png" />
+              </div>
+            </div>
+          </div>
+          <div class="vinyl-cover-texture"></div>
+      </div>
+    </div>
+    <div class="info e">
+      <div class="card-title">
+        <h1>COMING SOON</h1>
+      </div>
+      <div class="left-panel black-text">
+        <div class="shadow-left-panel"></div>
+        <div class="vinyl-back-desc">
+          <div class="side-a">
+          </div>
+          <div class="side-b">
+          </div>
+        </div>
+        <div class="proj-link-cont black-button">
+          <a href="#">/ / /</a> 
+          <a href="#">/ / /</a> <!-- Make it open in a seperate window -->
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="shadow-right-panel"></div>
+          <div class="vinyl-record">
+            <div class="record-center">
+              <div class="media-vinyl-center">
+                <img src="images/BLANK_Vinyl_Center.png" />
+              </div>
+            </div>
+          </div>
+          <div class="vinyl-cover-texture"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="side-nav"></div>
+
+<div id="socials"></div>
+
+<!-- custom cursor -->
+<div class="cursor" id="cursor"></div>
+
+<audio id="bgMusic" autoplay preload="auto"></audio>
+
+<audio id="hover1" src="hover1.mp3" preload="auto"></audio>
+
+<script src="fetchcomponents.js"></script>
+
+<script src="cursor.js"></script>
+
+<script>
+// const cursor = document.getElementById("cursor");
+// const screen = document.getElementById("screen");
+
+// // Change these paths to swap the icon used by each custom cursor state.
+// const cursorStates = {
+//   default: {
+//     icon: "svg/cursor-minimal.svg",
+//     size: 24,
+//     hotspot: { x: 0, y: 0 }
+//   },
+//   pointer: {
+//     icon: "svg/pointer.svg",
+//     size: 28,
+//     hotspot: { x: 6, y: 0 }
+//   },
+//   grab: {
+//     icon: "svg/hand.svg",
+//     size: 28,
+//     hotspot: { x: 10, y: 4 }
+//   },
+//   grabbing: {
+//     icon: "svg/hand-grab.svg",
+//     size: 28,
+//     hotspot: { x: 8, y: 8 }
+//   },
+//   click: {
+//     icon: "svg/cursor-click.svg",
+//     size: 28,
+//     hotspot: { x: 8, y: 8 }
+//   },
+//   text: {
+//     icon: "svg/text-cursor.svg",
+//     size: 28,
+//     hotspot: { x: 12, y: 12 }
+//   }
+// };
+
+// let activeCursorState = "";
+// let isPointerDown = false;
+// let clickStateUntil = 0;
+// let lastCursorPosition = { x: -100, y: -100 };
+
+// const interactiveSelector = [
+//   "a",
+//   "button",
+//   "[role='button']",
+//   "[data-cursor='pointer']",
+//   ".box"
+// ].join(",");
+
+// const grabSelector = [
+//   ".card",
+//   ".card-stack",
+//   "[data-cursor='grab']"
+// ].join(",");
+
+// const textSelector = [
+//   "input",
+//   "textarea",
+//   "[contenteditable='true']",
+//   "[data-cursor='text']"
+// ].join(",");
+
+// function getCursorState(target) {
+//   if (performance.now() < clickStateUntil) return "click";
+//   if (isPointerDown && target?.closest(grabSelector)) return "grabbing";
+//   if (isPointerDown) return "click";
+//   if (target?.closest(textSelector)) return "text";
+//   if (target?.closest(grabSelector)) return "grab";
+//   if (target?.closest(interactiveSelector)) return "pointer";
+//   return "default";
+// }
+
+// // Preload every cursor icon. If one fails to load (404, bad path, etc.)
+// // we fall back to the default icon so the cursor never disappears.
+// Object.entries(cursorStates).forEach(([name, config]) => {
+//   const probe = new Image();
+//   probe.onerror = () => {
+//     console.warn(`[cursor] "${name}" icon failed to load: ${config.icon}. Falling back to default.`);
+//     config.icon = cursorStates.default.icon;
+//     config.size = cursorStates.default.size;
+//     config.hotspot = cursorStates.default.hotspot;
+//     if (activeCursorState === name) applyCursorState(name);
+//   };
+//   probe.src = config.icon;
+// });
+
+// function applyCursorState(state) {
+//   const config = cursorStates[state] || cursorStates.default;
+//   activeCursorState = state;
+//   cursor.style.setProperty("--cursor-icon", `url("${config.icon}")`);
+//   cursor.style.setProperty("--cursor-size", `${config.size}px`);
+// }
+
+// function moveCursor(x, y) {
+//   lastCursorPosition = { x, y };
+//   const config = cursorStates[activeCursorState] || cursorStates.default;
+//   cursor.style.transform = `translate(${x - config.hotspot.x}px, ${y - config.hotspot.y}px)`;
+// }
+
+// function updateCursor(e) {
+//   const target = document.elementFromPoint(e.clientX, e.clientY);
+//   const state = getCursorState(target);
+
+//   if (state !== activeCursorState) {
+//     applyCursorState(state);
+//   }
+
+//   moveCursor(e.clientX, e.clientY);
+// }
+
+// applyCursorState("default");
+
+// // List of particle images
+// const particleImgs = [
+//   "music_note_1.png",
+//   "music_note_2.png",
+//   "music_note_3.png"
+// ];
+
+// // Scale percent variable to control particle size
+// const scalePercent = 1; // change to 0.5, 1.5, etc.
+
+// document.addEventListener("pointermove", updateCursor);
+
+// document.addEventListener("pointerdown", e => {
+//   isPointerDown = true;
+//   updateCursor(e);
+// });
+
+// document.addEventListener("pointerup", e => {
+//   isPointerDown = false;
+//   clickStateUntil = performance.now() + 120;
+//   updateCursor(e);
+
+//   window.setTimeout(() => {
+//     const target = document.elementFromPoint(lastCursorPosition.x, lastCursorPosition.y);
+//     const state = getCursorState(target);
+//     applyCursorState(state);
+//     moveCursor(lastCursorPosition.x, lastCursorPosition.y);
+//   }, 120);
+// });
+
+// document.addEventListener("pointercancel", e => {
+//   isPointerDown = false;
+//   updateCursor(e);
+// });
+
+// List of particle images
+const particleImgs = [
+  "music_note_1.png",
+  "music_note_2.png",
+  "music_note_3.png"
+];
+
+
+document.addEventListener("click", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+
+  const numParticles = 5; 
+  const minRadius = 35;  
+  const maxRadius = 200;
+  const numWaves = 3;
+  const waveDelay = 50;
+
+  for (let w = 0; w < numWaves; w++) {
+    setTimeout(() => {
+      for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement("img");
+
+        // Pick random image
+        particle.src = particleImgs[Math.floor(Math.random() * particleImgs.length)];
+        particle.className = "particle";
+
+        // Ensure transparency
+        particle.style.background = "transparent";
+        particle.style.position = "fixed";
+        particle.style.pointerEvents = "none";
+        particle.style.zIndex = "999";
+        particle.style.imageRendering = "pixelated";
+
+        // Random size with scalePercent
+        const scalePercent = 0.2; // 1 = original, 0.5 = half size, 2 = double size
+const baseSize = 100; // original size of your image
+const size = baseSize * scalePercent * (Math.random() * 0.5 + 0.75); // slight random variation
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+
+
+        screen.appendChild(particle);
+
+        // Random angle for spread
+        const angle = Math.random() * 2 * Math.PI + w * 0.15;
+        const distance = minRadius + Math.random() * (maxRadius - minRadius);
+        const destX = Math.cos(angle) * distance;
+        const destY = Math.sin(angle) * distance;
+
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+
+        // Animate particle
+        const anim = particle.animate([
+  { transform: `translate(0,0)`, opacity: 1 },
+  { transform: `translate(${destX}px, ${destY}px)`, opacity: 0 }
+], {
+  duration: 1000 + Math.random() * 400,
+  easing: "cubic-bezier(0.25,1,0.5,1)"
+});
+
+        anim.onfinish = () => particle.remove();
+      }
+    }, w * waveDelay);
+  }
+
+  // --- Multiple ripples
+  const numRipples = 5;
+  for (let i = 0; i < numRipples; i++) {
+    const ripple = document.createElement("div");
+    ripple.className = "ripple";
+    ripple.style.left = `${x - 10}px`;
+    ripple.style.top = `${y - 10}px`;
+    screen.appendChild(ripple);
+
+    const scale = 3 + i * 2;
+    const duration = 500 + i * 100;
+
+    const anim = ripple.animate([
+      { transform: "scale(0.5)", opacity: 0.1 },
+      { transform: `scale(${scale})`, opacity: 0 }
+    ], {
+      duration: duration,
+      easing: "ease-out"
+    });
+
+    anim.onfinish = () => ripple.remove();
+  }
+
+  // --- Screen shake
+  const intensity = 5;
+  const keyframes = [
+    { transform: "translate(0,0)" },
+    { transform: `translate(${Math.random()*intensity-intensity/2}px,${Math.random()*intensity-intensity/2}px)` },
+    { transform: `translate(${Math.random()*intensity-intensity/2}px,${Math.random()*intensity-intensity/2}px)` },
+    { transform: "translate(0,0)" }
+  ];
+  screen.animate(keyframes, { duration: 200, easing: "ease-out" });
+});
+
+const clickSFX = [
+  new Audio('click1.mp3'),
+  new Audio('click2.mp3'),
+  new Audio('click3.mp3')
+];
+
+document.addEventListener("click", e => {
+  // Play random click sound
+  const sound = clickSFX[Math.floor(Math.random() * clickSFX.length)];
+  sound.currentTime = 0; // restart in case it's still playing
+  sound.volume = .25;
+  sound.play();
+
+  const x = e.clientX;
+  const y = e.clientY;
+
+  // ... your particle & ripple code here ...
+});
+
+// card stack
+document.addEventListener("DOMContentLoaded", () => {
+  const cardStack = document.querySelector(".card-stack");
+  let cards = [...document.querySelectorAll(".card")];
+  const infoPanels = [...document.querySelectorAll(".info")];
+
+  let isSwiping = false;
+  let startY = 0;
+  let currentY = 0;
+  let animationFrameId = null;
+
+  const getDurationFromCSS = (variableName, element = document.documentElement) => {
+    const value = getComputedStyle(element)?.getPropertyValue(variableName)?.trim();
+    if (!value) return 0;
+    if (value.endsWith("ms")) return parseFloat(value);
+    if (value.endsWith("s")) return parseFloat(value) * 1000;
+    return parseFloat(value) || 0;
+  };
+
+  const getActiveCard = () => cards[0];
+
+  const updatePositions = () => {
+    cards.forEach((card, i) => {
+      card.style.setProperty("--i", i + 1);
+      card.style.setProperty("--swipe-y", "0px");
+      card.style.setProperty("--swipe-rotate-x", "0deg");
+      card.style.opacity = "1";
+      card.style.transition = "";
+      const blur = i === 0 ? 0 : 1;       // px
+			// const brightness = i === 0 ? 1 : Math.max(0.4, 1 - i * 0.15); // good brightness
+      const brightness = i === 0 ? 1 : 1; // no brightness
+      card.style.filter = `brightness(${brightness})`;
+    });
+  };
+
+  const applySwipeStyles = (deltaY) => {
+    if (deltaY < 0) deltaY = 0; // prevent downward movement
+    const card = getActiveCard();
+    if (!card) return;
+    card.style.setProperty("--swipe-y", `${-deltaY}px`);
+    card.style.setProperty("--swipe-rotate-x", `${Math.min(deltaY * 0.015, 15)}deg`); // subtle rotation max 15deg
+    // card.style.opacity = 1 - Math.min(Math.abs(deltaY) / 1000, 0.3); // keep opacity high
+    card.style.opacity = 1
+  };
+
+  const updateInfoVisibility = () => {
+    const frontCard = getActiveCard();
+    if (!frontCard) {
+      infoPanels.forEach((p) => p.classList.remove("visible"));
+      return;
+    }
+    const cardClass = [...frontCard.classList].find((cls) => cls.length === 1 && cls.match(/^[a-z]$/i));
+    infoPanels.forEach((panel) => {
+      if (cardClass && panel.classList.contains(cardClass)) {
+        panel.classList.add("visible");
+      } else {
+        panel.classList.remove("visible");
+      }
+    });
+  };
+
+  const handleStart = (clientY, pointerEvent) => {
+    if (isSwiping) return;
+    isSwiping = true;
+    startY = currentY = clientY;
+    const card = getActiveCard();
+    if (card) {
+      card.style.transition = "none";
+      if (pointerEvent?.target?.setPointerCapture) {
+        try { pointerEvent.target.setPointerCapture(pointerEvent.pointerId); } catch(e){}
+      }
+    }
+  };
+
+  const handleMove = (clientY) => {
+    if (!isSwiping) return;
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = requestAnimationFrame(() => {
+      currentY = clientY;
+      let deltaY = startY - currentY;
+      if (deltaY < 0) deltaY = 0; // no downward
+      applySwipeStyles(deltaY);
+    });
+  };
+
+  const handleEnd = () => {
+    if (!isSwiping) return;
+    cancelAnimationFrame(animationFrameId);
+
+    let deltaY = startY - currentY;
+    if (deltaY < 0) deltaY = 0; // no downward
+    const threshold = 50;
+    const duration = getDurationFromCSS("--card-swap-duration") || 300;
+    const card = getActiveCard();
+
+    if (card) {
+      card.style.transition = `transform ${duration}ms ease, opacity ${duration}ms ease`;
+
+      if (deltaY > threshold) {
+        card.style.setProperty("--swipe-y", "-700px");
+        card.style.setProperty("--swipe-rotate-x", "15deg");
+        card.style.opacity = 0.7;
+
+        setTimeout(() => {
+          cards = [...cards.slice(1), card];
+          updatePositions();
+          updateInfoVisibility();
+        }, duration);
+      } else {
+        card.style.setProperty("--swipe-y", "0px");
+        card.style.setProperty("--swipe-rotate-x", "0deg");
+        card.style.opacity = 1;
+        setTimeout(() => card.style.transition = "", duration);
+      }
+    }
+
+    isSwiping = false;
+    startY = currentY = 0;
+  };
+
+  const addEventListeners = () => {
+    cardStack?.addEventListener("pointerdown", (ev) => handleStart(ev.clientY, ev));
+    window.addEventListener("pointermove", (ev) => handleMove(ev.clientY));
+    window.addEventListener("pointerup", handleEnd);
+    window.addEventListener("pointercancel", handleEnd);
+  };
+
+  updatePositions();
+  updateInfoVisibility();
+  addEventListeners();
+});
+</script>
+
+    
+</body>
+</html>

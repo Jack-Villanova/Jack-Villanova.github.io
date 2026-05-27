@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="root.css">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Vina+Sans&display=swap');
+  @import url('https://unpkg.com/@hackernoon/pixel-icon-library/fonts/iconfont.css');
+    /* font-family: "Love Ya Like A Sister", cursive; */
+
+@font-face {
+  font-family: 'circular';
+  src: url('circular-std-medium-500.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves loading performance */
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: none !important;
+  scroll-behavior: smooth !important;
+}
+
+html.dragging-vinyl,
+html.dragging-vinyl * {
+  scroll-behavior: auto !important;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  /* overflow: hidden; */
+  background: var(--bg-color);
+  /* background-image: url("bg.png"); */
+  /* background-image: url("010.png"); */
+  /* filter: invert(1); */
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  color: #000000;
+  font-family: 'circular', normal;
+  display: block;
+  position: relative;
+  overflow-x: hidden;
+  
+}
+
+.bg {
+  height: 100%;
+  width: 100%;
+  /* background-image: url("bg.png"); */
+  background-image: url("005.png");
+  /* background-image: url("noisegif.gif"); */
+  /* filter: invert(1); */
+  opacity: 1;
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: contain;
+  background-repeat: repeat;
+  background-position: top left;
+  mix-blend-mode: overlay;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -99999999;
+}
+
+::-webkit-scrollbar {
+  width: 0.25vw;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color); 
+  /* border-radius: 100px; */
+  height: 50%;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+ #screen {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
+  display: block;
+  perspective: 1000px; /* allow 3D rotation */
+  overflow: visible;    /* prevent clipping */
+}
+
+#screen {
+  transform-origin: top left;
+  transform: none;
+}
+
+/* Top nav */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: #000000;
+  z-index: 10;
+}
+
+.top-nav .portfolio-info {
+  text-align: right;
+  line-height: 1.2;
+}
+
+.top-nav .logo {
+  color: var(--bg-color);
+}
+
+
+/* Side nav */
+.side-nav {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: #0ff;
+  z-index: 10;
+}
+.side-nav a {
+  color: #0ff;
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.side-nav a:hover {
+  color: #f0f;
+  text-shadow: 0 0 8px #f0f;
+}
+    /* Side Navbar */
+  nav {
+  position: fixed;
+  top: 50%;
+  left: -1rem; /* small offset from edge */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center links so rotation looks uniform */
+  gap: 7rem; /* smaller, more visually even */
+  font-size: 0.8rem;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+nav a {
+  color: var(--bg-color) !important;
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  user-select: none;
+  transform: rotate(-90deg);
+  display: inline-block; /* ensures padding works correctly */
+  /*padding: 10px;  correct syntax */
+  padding: 3px;
+}
+
+nav a:hover {
+  color: var(--accent-color) !important;
+  /* text-shadow: 0 0 8px rgb(255, 103, 255); */
+  text-shadow: 0 0px 20px rgb(39, 167, 253, 0.5);
+}
+
+
+/* Side Navbar */
+.socials {
+  position: fixed;
+  top: 50%;
+  left: 100%; /* small offset from edge */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center links so rotation looks uniform */
+  gap: 2.5rem; /* smaller, more visually even */
+  text-transform: uppercase;
+  z-index: 10;
+  margin-left: -4rem;
+}
+
+.socials a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  user-select: none;
+  display: inline-block;
+  padding: 3px;
+  border: 2px solid rgba(0,0,0,0);
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+}
+
+.socials a:hover {
+  border-color: black;
+}
+
+.socials i {
+  font-size: 1.5rem;
+  align-items: center;
+  /* width: 1.5rem;
+  height: 1.5rem; */
+  border: 0px solid black;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  width: var(--cursor-size, 24px);
+  height: var(--cursor-size, 24px);
+  background-image: var(--cursor-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  image-rendering: pixelated;
+  transform: translate(-100px, -100px);
+  will-change: transform, background-image;
+}
+
+    /* Click particles */
+.particle {
+  position: fixed;
+  width: 100px; /* bigger for impact */
+  height: 100px;
+  /* background: #ff00ff; */
+  background: #ffffff;
+  /* image-rendering: pixelated; */
+  pointer-events: none;
+  z-index: 99999;
+  /* filter: invert(1) brightness(2); */
+}
+
+    /* Ripple effect */
+.ripple {
+  position: absolute;
+  border: 2px solid #000000;
+  border-radius: 50%; /* makes it a circle */
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 99999;
+}
+
+/* Info Panels */
+.info-panels {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 10;
+  perspective: 1000px;
+  overflow: visible;
+  /* pointer-events: none; */
+}
+
+.main-container {
+  position: relative;   /* establish positioning context */
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  display: flex;
+  /* border: 2px solid red; */
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  height: auto;
+  width: 100vw;
+  /* border: 2px solid blue; */
+  justify-content: center;
+  align-items: stretch;
+}
+
+.about-scroll {
+  position: relative;
+  width: 100%;
+  min-height: 500vh;
+}
+
+.about-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.vinyl-side {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: visible;
+  z-index: 3;
+
+  /* ===== vinyl quick-tune: only edit the numbers (everything is N × --u) ===== */
+  --u: 1vh; /* scale whole stack; 1vh ≈ old “fills height” behavior */
+  --disc: 110; /* disc diameter */
+  --disc-x: -44.8; /* horizontal shift (negative = left) */
+  --needle-w: 55.52;
+  --needle-h: 11.2;
+  --needle-s: 0.9; /* only dial for needle scale (bigger/smaller, keeps aspect) */
+  --disc-inset: 4.2; /* inner dark ring thickness */
+  --disc-glow: 5; /* outer shadow blur */
+  --ndrop-x: -0.5; /* needle drop-shadow */
+  --ndrop-y: -1;
+  --ndrop-blur: 0.5;
+  --ndrop-y-webkit: -1.5;
+  --ndrop-blur-webkit: 1;
+  /* ======================================================================= */
+}
+
+.vinyl-disc {
+  position: absolute;
+  left: calc(var(--disc-x) * var(--u));
+  top: 50%;
+  aspect-ratio: 1;
+  height: calc(var(--disc) * var(--u));
+  border: 2px solid #000000;
+  border-radius: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transform-origin: center;
+  background-image: url("vinyltexture.png");
+  background-size: cover;
+  /* background:
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.92) 60%, rgba(0, 0, 0, 0.98) 100%),
+    conic-gradient(from 0deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03) 22%, rgba(255, 255, 255, 0.1) 44%, rgba(255, 255, 255, 0.02) 66%, rgba(255, 255, 255, 0.12) 86%, rgba(255, 255, 255, 0.14)); */
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.08),
+    inset 0 0 0 calc(var(--disc-inset) * var(--u)) rgba(0, 0, 0, 0.2),
+    0 0 calc(var(--disc-glow) * var(--u)) rgba(0, 0, 0, 0.5);
+  touch-action: none;
+  z-index: -1;
+}
+
+.vinyl-hole {
+  position: absolute;
+  left: 50.1%;
+  top: 50%;
+  width: 3.1%;
+  height: 3.3%;
+  /* border: 2px solid var(--bg-color); */
+  border-radius: 50%;
+  background-image: url("VinylSpindle.png");
+    background-size: cover;
+  transform: translate(-50%, -50%);
+}
+
+.vinyl-needle {
+  position: absolute;
+  width: calc(var(--needle-w) * var(--needle-s) * var(--u));
+  height: calc(var(--needle-h) * var(--needle-s) * var(--u));
+  min-height: max(8px, calc(var(--u) * var(--needle-s)));
+  /* border: 2px solid #000000;
+  background: red; */
+  background-image: url(images/needle.png);
+  background-size: cover;
+  transform-origin: right center;
+  transform: rotate(0deg);
+  transition: transform 0.25s ease-out;
+  pointer-events: none;
+  z-index: 4;
+  -webkit-filter: drop-shadow(
+    calc(var(--ndrop-x) * var(--needle-s) * var(--u))
+    calc(var(--ndrop-y-webkit) * var(--needle-s) * var(--u))
+    calc(var(--ndrop-blur-webkit) * var(--needle-s) * var(--u))
+    rgba(0, 0, 0, 1)
+  );
+  filter: drop-shadow(
+    calc(var(--ndrop-x) * var(--needle-s) * var(--u))
+    calc(var(--ndrop-y) * var(--needle-s) * var(--u))
+    calc(var(--ndrop-blur) * var(--needle-s) * var(--u))
+    rgba(0, 0, 0, 0.75)
+  );
+  /* box-shadow: -.5rem .5rem 1rem rgba(0, 0, 0, 0.25); */
+}
+
+.about-content {
+  width: 45vw;
+  height: 70vh;
+  max-height: 780px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 5vw;
+  z-index: 2;
+}
+
+.about-panel {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.about-panel.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.panel-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.35vw;
+  margin-bottom: 1.2vw;
+}
+
+.panel-subtitle {
+  opacity: .65;
+  margin-bottom: 1.5vw;
+}
+
+.cta-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1vw;
+  margin-top: 2vw;
+}
+
+.resume {
+  width: 50%;
+}
+
+.resume a {
+  display: flex;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5vw;
+  padding: 2.25rem 4rem;
+  /* width: 100%; */
+  height: 100%;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid black;
+  color: #000;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: relative;  /* needed for ::before */
+  overflow: hidden;    /* contain fill effect */
+  /* background: var(--bg-color); */
+  color: #000000;
+  cursor: none;
+  /* box-shadow: 0 0 20px rgb(12, 12, 12, .75); */
+  transition: color 0.3s, box-shadow 0.3s;
+}
+
+.resume a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.resume a:hover {
+  color: var(--bg-color);
+  /* box-shadow: 0 0 20px #f0f; */
+    /* background: rgb(19, 19, 19); */
+      box-shadow: 0 0 20px rgb(12, 12, 12, .75);
+
+}
+
+.resume a:hover::before {
+  left: 0;
+}
+
+.about-panel h2 {
+  padding-bottom: 5%;
+}
+
+.stats a {
+  text-decoration: none;
+  color: var(--accent-color);
+  cursor: pointer;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.about-panel ul {
+  padding-top: 10px;
+  padding-inline-start: 40px;
+}
+
+.about-panel li {
+  /* list-style-type: none; */
+  padding-bottom: 2.5%;
+}
+
+.side-vignette {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background: linear-gradient(90deg,rgba(0, 0, 0, .5) 0%, rgba(255, 255, 255, 0) 50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+i {
+  font-size: 1rem;
+  padding: 0 1rem;
+}
+
+</style>
+</head>
+
+<body>
+  <div class="bg"></div>
+  <div class="side-vignette"></div>
+  <div class="side-shadoww"></div>
+  <div id="screen">
+
+    <section class="info-panels">
+      <div class="main-container">
+        <div class="container">
+          <div class="about-scroll" id="aboutScroll">
+            <div class="about-sticky">
+              <div class="vinyl-side">
+                <div class="vinyl-disc" id="vinylDisc">
+                  <div class="vinyl-hole"></div>
+                </div>
+                <div class="vinyl-needle" id="vinylNeedle"></div>
+              </div>
+              <div class="about-content">
+                <div class="about-panel active">
+                  <h2 class="panel-subtitle">Section 1 / 4</h2>
+                  <h1 class="panel-title">Hello! I'm Jack Villanova</h1>
+                  <h2 class="panel-subtitle">Scroll Down!</h2>
+                  <p>
+                    You can drag on the vinyl disc with your mouse, if it feels more comfortable.
+                  </p>
+                </div>
+
+                <div class="about-panel">
+                  <h2 class="panel-subtitle">Section 2 / 4</h2>
+                  <h1 class="panel-title">University of Tampa</h1>
+                  <h2 class="panel-subtitle">Cybersecurity, Sykes College of Business | Tampa, FL</h2>
+                  <p>
+                    I’m a first-year student who loves solving puzzles and turning ideas into reality.
+                    Perfectionism drives me as I focus on the small details that make projects polished and complete.
+                    I have a background in a multitude of industries such as game dev and software design as well as other passions.
+                    Time is irrelevant to me as you will catch me working hours past when I should have stopped, day after day.
+                    Being "burnt out" is a mental issue, it's propaganda to keep the competition low in the tech space.
+                    I love competition, so, bring me your most challenging tasks because I won't let it or anyone win over me.
+                    Most of all, I'm not afraid to share my weaknessess. I know my strengths.
+                  </p>
+                  <div class="cta-container">
+                    <div class="resume">
+                      <a href="/resources/resume.pdf" download>Resume <i class="hn hn-link-solid"></i></a>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="about-panel stats">
+                  <h2 class="panel-subtitle">Section 3 / 4</h2>
+                  <h2>Qualifications</h2>
+                  <p>
+                    <b>Languages:</b>
+                    Java, C#, HTML, CSS, Python.
+                    <br>
+                    <br>
+                    <b>Libraries:</b>
+                    Java Swing, <a href="https://www.formdev.com/flatlaf/">FlatLaf</a>, <a href="https://github.com/mpatric/mp3agic">Mp3agic</a>.
+                    <br>
+                    <br>
+                    <b>Software:</b>
+                  </p>
+                  <ul>
+                    <li>
+                      <em>Programming</em> | Git, GitHub, Wireshark, IntelliJ IDE, VS Code, Cursor, Unity
+                    </li>
+                    <li>
+                      <em>Design</em> | Figma, Blender, Adobe Photoshop, Adobe Premiere Pro, Adobe After Effects, Adobe XD
+                    </li>
+                    <li>
+                      <em>Fun/Extra</em> | FL Studio, Logic Pro X, Ableton
+                    </li>
+                  </ul>
+                  <p>
+                    <b>Operating Systems:</b>
+                    Kali Linux, Windows, macOS
+                    <br>
+                    <br>
+                  </p>
+                  <b>Projects:</b>
+                  <ul>
+                    <li>
+                      <em><a href="lightspeed.html">Lightspeed</a></em> (2026) - <br>Inspired by Apple’s Universal Clipboard and Handoff to solve the incompatibility between Windows and macOS clipboards with Electron and ngrok.
+                    </li>
+                    <li>
+                      <em><a href="blank.html">MetaTune</a></em> (2024 - 2026) - <br>Java based application that converts blank MP3 files, using metadata tagging with Mp3agic, into presentable files that blend in with real songs in your Apple Music library with FlatLaf, Java Swing, and Mp3agic.
+                    <li>
+                      <em><a href="blank.html">Prospecting Chance Calculator</a></em> (2025) - <br>Java based software that calculates game logic to aid players in a popular game called “Prospecting!” helping 100+ players progress significantly faster.
+                    </li>
+                    <li>
+                      <em><a href="blank.html">Rush Hour</a></em> (2023 - Ongoing) - <br>C# based game in Unity where players race against the clock through realistic driving and precision parking challenges. Integrated leaderboard, economy, authentication, and DB system using Unity’s SDK.
+                    </li>
+                  </ul>
+                  <b>Education:</b>
+                  <ul>
+                    <li>
+                      <em><a href="https://www.ut.edu/">University of Tampa</a></em> - <br>Major: B.S. Cybersecurity | Sykes College of Business <br>Double Minor: Philosophy & Management Information Systems
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="about-panel">
+                  <h2 class="panel-subtitle">Section 4 / 4</h2>
+                  <h1 class="panel-title">Portfolio Concept</h1>
+                  <h2 class="panel-subtitle"></h2>                  
+                  <p>
+                    This portfolio's concept is a blend between 8-bit, sketch, and vinyl. Music is a big part of my life, so, I wanted to represent that here.
+                    Additionally, as a programmer, how can you not pay homage to 8/16-bit.
+                    The sketch thing is just something that scratches the brain for me.
+                    Also, I don't think anyone has ever combined these three themes for a portfolio website. So, consider me the first!
+                    <br>
+                    <br>
+                    I tried to best portray the theme of music by adding vinyl components in some places.
+                    The projects page is supposed to evoke that nostolgia of flipping through the records in the store to find the one you want.
+                    If you somehow still haven't noticed, the cursor click shows pixelated music notes!
+                    Lastly, the individual project pages have a mix between Spotify and Apple Music's lyric system to caption each of the images.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</div>
+
+<div id="top-nav"></div>
+
+<div id="side-nav"></div>
+    
+<div id="socials"></div>
+
+
+
+    <!-- <div class="hero">
+      <h1>JACK VILLANOVA</h1>
+      <p>A perfectionist that can't put down the keyboard.</p>
+      <socials>
+        <a href="#">LinkedIn</a>
+        <a href="#">Projects</a>
+        <a href="#">About</a>
+      </socials>
+    </div> -->
+<!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.56/build/spline-viewer.js"></script> -->
+<!-- <spline-viewer loading-anim-type="none" url="https://prod.spline.design/4SF7EN0QLVABDish/scene.splinecode"></spline-viewer> -->
+
+
+<!-- custom cursor -->
+<div class="cursor" id="cursor"></div>
+
+<audio id="bgMusic" autoplay preload="auto"></audio>
+
+<audio id="hover1" src="hover1.mp3" preload="auto"></audio>
+
+<script src="fetchcomponents.js"></script>
+
+<script src="cursor.js"></script>
+
+<script>
+const aboutScroll = document.getElementById("aboutScroll");
+const vinylDisc = document.getElementById("vinylDisc");
+const vinylNeedle = document.getElementById("vinylNeedle");
+const aboutPanels = Array.from(document.querySelectorAll(".about-panel"));
+
+/** needle pivot on disc — tweak small decimals here */
+const NEEDLE_PIVOT = { along: -0.05, up: 1.02 };
+
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function positionNeedleRelativeToDisc() {
+  if (!vinylDisc || !vinylNeedle) return;
+
+  const parent = vinylNeedle.offsetParent;
+  if (!parent) return;
+
+  // offsetLeft/offsetTop ignore translateY(-50%) and other transforms, so the
+  // pivot drifts—especially when the disc is larger (e.g. fullscreen + 110vh).
+  const pr = parent.getBoundingClientRect();
+  const dr = vinylDisc.getBoundingClientRect();
+  // Visual center follows transforms (translateY, rotate). Radius must come from
+  // layout size—rotated rect's width/height is an inflated AABB, not the disc radius.
+  const discRadius = vinylDisc.offsetWidth / 2;
+  const discCenterX = dr.left + dr.width / 2 - pr.left;
+  const discCenterY = dr.top + dr.height / 2 - pr.top;
+
+  const pivotX = discCenterX + discRadius * NEEDLE_PIVOT.along;
+  const pivotY = discCenterY - discRadius * NEEDLE_PIVOT.up;
+
+  const needleWidth = vinylNeedle.offsetWidth;
+  const needleHeight = vinylNeedle.offsetHeight;
+
+  // Place needle so its right-center (transform origin) sits on pivot.
+  vinylNeedle.style.left = `${pivotX - needleWidth}px`;
+  vinylNeedle.style.top = `${pivotY - needleHeight / 2}px`;
+}
+
+function updateAboutScrollState() {
+  if (!aboutScroll || !vinylDisc || !vinylNeedle || aboutPanels.length === 0) return;
+
+  const maxScroll = aboutScroll.offsetHeight - window.innerHeight;
+  const sectionTop = aboutScroll.offsetTop;
+  const localScroll = clamp(window.scrollY - sectionTop, 0, Math.max(maxScroll, 1));
+  const progress = localScroll / Math.max(maxScroll, 1);
+
+  const recordRotation = progress * 1080;
+  vinylDisc.style.transform = `translateY(-50%) rotate(${recordRotation}deg)`;
+
+  let needleRotation = -180;
+  if (progress > 0 && progress < 0.9) {
+    needleRotation = -145;
+  } else if (progress >= 0.9) {
+    needleRotation = -180 + (((1 - progress) / 0.1) * 35);
+  }
+  vinylNeedle.style.transform = `rotate(${clamp(needleRotation, -180, -155)}deg)`;
+
+  const steppedIndex = Math.round(progress * (aboutPanels.length - 1));
+  aboutPanels.forEach((panel, index) => {
+    panel.classList.toggle("active", index === steppedIndex);
+  });
+}
+
+let isDraggingDisc = false;
+let lastPointerAngle = 0;
+let activePointerId = null;
+const dragScrollSensitivity = 6;
+
+function getPointerAngleOnDisc(event) {
+  const rect = vinylDisc.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const dx = event.clientX - centerX;
+  const dy = event.clientY - centerY;
+  return Math.atan2(dy, dx) * (180 / Math.PI);
+}
+
+if (vinylDisc) {
+  vinylDisc.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    event.preventDefault();
+    isDraggingDisc = true;
+    activePointerId = event.pointerId;
+    lastPointerAngle = getPointerAngleOnDisc(event);
+    document.documentElement.classList.add("dragging-vinyl");
+    vinylDisc.setPointerCapture(event.pointerId);
+  });
+
+  window.addEventListener("pointermove", (event) => {
+    if (!isDraggingDisc || event.pointerId !== activePointerId) return;
+    event.preventDefault();
+    const currentPointerAngle = getPointerAngleOnDisc(event);
+    let deltaAngle = currentPointerAngle - lastPointerAngle;
+
+    if (deltaAngle > 180) deltaAngle -= 360;
+    if (deltaAngle < -180) deltaAngle += 360;
+    if (Math.abs(deltaAngle) < 0.08) return;
+
+    // Clockwise drag -> positive deltaAngle -> scroll down.
+    const nextScrollTop = clamp(
+      window.scrollY + deltaAngle * dragScrollSensitivity,
+      0,
+      document.documentElement.scrollHeight - window.innerHeight
+    );
+    window.scrollTo({ top: nextScrollTop, behavior: "auto" });
+    lastPointerAngle = currentPointerAngle;
+  });
+
+  const stopDraggingDisc = (event) => {
+    if (!isDraggingDisc) return;
+    if (event.pointerId !== activePointerId) return;
+    isDraggingDisc = false;
+    activePointerId = null;
+    document.documentElement.classList.remove("dragging-vinyl");
+    try {
+      vinylDisc.releasePointerCapture(event.pointerId);
+    } catch (err) {
+      // Ignore release errors.
+    }
+  };
+
+  window.addEventListener("pointerup", stopDraggingDisc);
+  window.addEventListener("pointercancel", stopDraggingDisc);
+}
+
+window.addEventListener("scroll", updateAboutScrollState, { passive: true });
+window.addEventListener("resize", () => {
+  positionNeedleRelativeToDisc();
+  updateAboutScrollState();
+});
+window.addEventListener("load", () => {
+  requestAnimationFrame(() => {
+    positionNeedleRelativeToDisc();
+    updateAboutScrollState();
+  });
+});
+requestAnimationFrame(() => {
+  positionNeedleRelativeToDisc();
+  updateAboutScrollState();
+});
+
+// List of particle images
+const particleImgs = [
+  "music_note_1.png",
+  "music_note_2.png",
+  "music_note_3.png"
+];
+
+// Scale percent variable to control particle size
+
+function updateCustomCursor(x, y) {
+  cursor.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+document.addEventListener("mousemove", (e) => {
+  updateCustomCursor(e.clientX, e.clientY);
+});
+
+window.addEventListener("pointermove", (e) => {
+  updateCustomCursor(e.clientX, e.clientY);
+});
+
+document.addEventListener("click", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+  const pageX = e.pageX;
+  const pageY = e.pageY;
+
+  const numParticles = 5; 
+  const minRadius = 35;  
+  const maxRadius = 200;
+  const numWaves = 3;
+  const waveDelay = 50;
+
+  for (let w = 0; w < numWaves; w++) {
+    setTimeout(() => {
+      for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement("img");
+
+        // Pick random image
+        particle.src = particleImgs[Math.floor(Math.random() * particleImgs.length)];
+        particle.className = "particle";
+
+        // Ensure transparency
+        particle.style.background = "transparent";
+        particle.style.position = "absolute";
+        particle.style.pointerEvents = "none";
+        particle.style.zIndex = "999";
+        particle.style.imageRendering = "pixelated";
+
+        // Random size with scalePercent
+        const scalePercent = 0.2; // 1 = original, 0.5 = half size, 2 = double size
+const baseSize = 100; // original size of your image
+const size = baseSize * scalePercent * (Math.random() * 0.5 + 0.75); // slight random variation
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+
+
+        screen.appendChild(particle);
+
+        // Random angle for spread
+        const angle = Math.random() * 2 * Math.PI + w * 0.15;
+        const distance = minRadius + Math.random() * (maxRadius - minRadius);
+        const destX = Math.cos(angle) * distance;
+        const destY = Math.sin(angle) * distance;
+
+        particle.style.left = `${pageX}px`;
+        particle.style.top = `${pageY}px`;
+
+        // Animate particle
+        const anim = particle.animate([
+  { transform: `translate(0,0)`, opacity: 1 },
+  { transform: `translate(${destX}px, ${destY}px)`, opacity: 0 }
+], {
+  duration: 1000 + Math.random() * 400,
+  easing: "cubic-bezier(0.25,1,0.5,1)"
+});
+
+        anim.onfinish = () => particle.remove();
+      }
+    }, w * waveDelay);
+  }
+
+  // --- Multiple ripples
+  const numRipples = 5;
+  for (let i = 0; i < numRipples; i++) {
+    const ripple = document.createElement("div");
+    ripple.className = "ripple";
+    ripple.style.left = `${pageX - 10}px`;
+    ripple.style.top = `${pageY - 10}px`;
+    screen.appendChild(ripple);
+
+    const scale = 3 + i * 2;
+    const duration = 500 + i * 100;
+
+    const anim = ripple.animate([
+      { transform: "scale(0.5)", opacity: 0.1 },
+      { transform: `scale(${scale})`, opacity: 0 }
+    ], {
+      duration: duration,
+      easing: "ease-out"
+    });
+
+    anim.onfinish = () => ripple.remove();
+  }
+
+  // --- Screen shake
+  const intensity = 5;
+  const keyframes = [
+    { transform: "translate(0,0)" },
+    { transform: `translate(${Math.random()*intensity-intensity/2}px,${Math.random()*intensity-intensity/2}px)` },
+    { transform: `translate(${Math.random()*intensity-intensity/2}px,${Math.random()*intensity-intensity/2}px)` },
+    { transform: "translate(0,0)" }
+  ];
+  screen.animate(keyframes, { duration: 200, easing: "ease-out" });
+});
+
+const clickSFX = [
+  new Audio('click1.mp3'),
+  new Audio('click2.mp3'),
+  new Audio('click3.mp3')
+];
+
+document.addEventListener("click", e => {
+  // Play random click sound
+  const sound = clickSFX[Math.floor(Math.random() * clickSFX.length)];
+  sound.currentTime = 0; // restart in case it's still playing
+  sound.volume = .25;
+  sound.play();
+
+  const x = e.clientX;
+  const y = e.clientY;
+
+  // ... your particle & ripple code here ...
+});
+// ========== Shared Audio Logic for Non-Home Pages ==========
+const audio = document.getElementById("bgMusic");
+
+// Load saved data
+const savedSrc = localStorage.getItem("audioSrc");
+const savedTime = localStorage.getItem("audioCurrentTime");
+const savedVolume = localStorage.getItem("audioVolume");
+
+if (savedSrc) {
+  audio.src = savedSrc;
+  audio.preload = "auto";
+  audio.loop = true;
+  if (savedVolume) audio.volume = parseFloat(savedVolume);
+
+  audio.addEventListener("loadedmetadata", () => {
+    if (savedTime) audio.currentTime = parseFloat(savedTime);
+    audio.play().catch(err => console.log("Autoplay blocked:", err));
+  });
+}
+
+// Save playback state when leaving
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("audioCurrentTime", audio.currentTime);
+  localStorage.setItem("audioSrc", audio.src);
+  localStorage.setItem("audioVolume", audio.volume);
+});
+
+
+  const sfx = document.getElementById("hover1");
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      sfx.currentTime = 0; // restart sound
+      sfx.volume = 0.1;
+      sfx.play();
+    });
+  });
+
+// Music Controls
+const playPauseBtn = document.getElementById("playPauseBtn");
+const progressBar = document.getElementById("progressBar");
+const currentTimeEl = document.getElementById("currentTime");
+const durationEl = document.getElementById("duration");
+
+// Format seconds into M:SS
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+audio.addEventListener("loadedmetadata", () => {
+  durationEl.textContent = formatTime(audio.duration);
+  progressBar.max = audio.duration;
+});
+
+audio.addEventListener("timeupdate", () => {
+  progressBar.value = audio.currentTime;
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+});
+
+progressBar.addEventListener("input", () => {
+  audio.currentTime = progressBar.value;
+});
+
+// Play/Pause toggle
+playPauseBtn.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.play();
+    playPauseBtn.textContent = "❚❚"; // pause symbol
+  } else {
+    audio.pause();
+    playPauseBtn.textContent = "▶"; // play symbol
+  }
+});
+
+// format time helper
+function formatTime(sec) {
+  const minutes = Math.floor(sec / 60) || 0;
+  const seconds = Math.floor(sec % 60) || 0;
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// update fill + time display
+function updateProgress() {
+  const percent = (progressBar.value / progressBar.max) * 100 || 0;
+  progressBar.style.background =
+    `linear-gradient(to right, #000 ${percent}%, transparent ${percent}%)`;
+  
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+  durationEl.textContent = formatTime(audio.duration);
+}
+
+// audio events
+audio.addEventListener('timeupdate', () => {
+  progressBar.value = audio.currentTime;
+  updateProgress();
+});
+
+audio.addEventListener('loadedmetadata', () => {
+  progressBar.max = audio.duration;
+  durationEl.textContent = formatTime(audio.duration);
+});
+
+// allow scrubbing
+progressBar.addEventListener('input', () => {
+  audio.currentTime = progressBar.value;
+  updateProgress();
+});
+
+
+
+</script>
+
+    
+</body>
+</html>

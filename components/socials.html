@@ -1,0 +1,133 @@
+<style>
+.socials {
+  position: fixed;
+  top: 50%;
+  left: 100%; /* small offset from edge */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center links so rotation looks uniform */
+  gap: 2.5rem; /* smaller, more visually even */
+  /* font-size: 0.8rem; */
+  /* font-family: 'Press Start 2P', cursive; */
+  text-transform: uppercase;
+  z-index: 10;
+  margin-left: -4rem;
+}
+
+.socials a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  user-select: none;
+  display: inline-block;
+  padding: 3px;
+  border: 2px solid rgba(0,0,0,0);
+  transition: 0.2s ease-in-out;
+  border-radius: 5px;
+}
+
+.socials a:hover {
+  border-color: black;
+}
+
+.socials i {
+  font-size: 1.5rem;
+  align-items: center;
+  /* width: 1.5rem;
+  height: 1.5rem; */
+  border: 0px solid black;
+  padding: 0;
+}
+
+.cursor-hint {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-100%, 100%); /* offset right + up */
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.3rem;
+
+  background: rgba(0, 0, 0, 1);
+  color: #D9D9D9;
+  /* backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); */
+
+  pointer-events: none; /* VERY IMPORTANT */
+  z-index: 9999;
+
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+  box-shadow: 0 5px 20px rgba(0,0,0,.2);
+
+  font-family: 'Press Start 2P', cursive;
+  font-weight: 3d00;
+  font-size: 0.75rem;
+  text-align: left;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.githublink {
+  color: red;
+}
+
+</style>
+
+<div class="socials">
+    <!-- <a href="#"><i class="hn hn-instagram"></i></a> -->
+    <a class="github-link" href="https://github.com/Jack-Villanova/" target="_blank"><i class="hn hn-github"></i></a>
+    <a class="linkedin-link"href="https://www.linkedin.com/in/jack-villanova/" target="_blank"><i class="hn hn-linkedin"></i></a>
+    <a class="email-link"href="mailto:jackvillanova@icloud.com"><i class="hn hn-envelope"></i></a>
+</div>
+
+<div class="github-hint cursor-hint">Jack-Villanova</div>
+<div class="linkedin-hint cursor-hint">Jack Villanova</div>
+<div class="email-hint cursor-hint">jackvillanova@icloud.com</div>
+
+<script>
+const githubHint = document.querySelector(".github-hint");
+const linkedinHint = document.querySelector(".linkedin-hint");
+const emailHint = document.querySelector(".email-hint");
+
+window.addEventListener("pointermove", (e) => {
+
+    const hovered = document
+        .elementFromPoint(e.clientX, e.clientY);
+
+    const github =
+        hovered?.closest(".github-link");
+
+    const linkedin =
+        hovered?.closest(".linkedin-link");
+
+    const email =
+        hovered?.closest(".email-link");
+
+    // hide all first
+    githubHint.style.opacity = "0";
+    linkedinHint.style.opacity = "0";
+    emailHint.style.opacity = "0";
+
+    let activeHint = null;
+
+    if (github) {
+        activeHint = githubHint;
+    }
+
+    if (linkedin) {
+        activeHint = linkedinHint;
+    }
+
+    if (email) {
+        activeHint = emailHint;
+    }
+
+    if (activeHint) {
+        activeHint.style.opacity = "1";
+        activeHint.style.left = `${e.clientX}px`;
+        activeHint.style.top = `${e.clientY}px`;
+    }
+
+});
+</script>

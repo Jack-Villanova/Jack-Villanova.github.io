@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BLANK</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="root.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Vina+Sans&display=swap');
+@import url('https://unpkg.com/@hackernoon/pixel-icon-library/fonts/iconfont.css');
+
+    /* font-family: "Love Ya Like A Sister", cursive; */
+
+@font-face {
+  font-family: 'circular';
+  src: url('circular-std-medium-500.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves loading performance */
+}
+
+:root {
+  /* --secondary-ac: rgb(123, 176, 255); */
+  --secondary-ac: var(--blank-ac);
+}
+
+.secondary-ac {
+  color: var(--secondary-ac);
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none; /* hide default cursor */
+  user-select: none;
+  scroll-behavior: smooth !important;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  /* overflow: hidden; */
+  background: var(--bg-color);
+  /* background-image: url("bg.png"); */
+  /* background-image: url("010.png"); */
+  /* filter: invert(1); */
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  color: #000000;
+  font-family: 'circular', normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+  
+}
+
+.bg {
+  height: 100vh;
+  width: 100vw;
+  /* background-image: url("bg.png"); */
+  background-image: url("005.png");
+  /* background-image: url("noisegif.gif"); */
+  /* filter: invert(1); */
+  opacity: 1;
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  mix-blend-mode: overlay;
+  position: absolute;
+  z-index: -99999999;
+}
+
+::-webkit-scrollbar {
+  width: 0.25vw;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-ac); 
+  /* border-radius: 100px; */
+  height: 50%;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+ #screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; /* allow 3D rotation */
+  overflow: visible;    /* prevent clipping */
+}
+
+#screen {
+  transform-origin: top left;
+  transform: scale(
+    clamp(
+      0.7,
+      min(100vw / 1920, 100vh / 1080),
+      1
+    )
+  );
+}
+
+
+
+/* Top nav */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: #000000;
+  z-index: 10;
+}
+
+
+@media (max-width: 1300px) {
+  .top-nav {
+    font-size: 0.6rem;
+  }
+}
+
+.top-nav .portfolio-info {
+  text-align: right;
+  line-height: 1.2;
+}
+
+
+/* Side nav */
+.side-nav {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5vw;
+  color: #0ff;
+  z-index: 10;
+}
+.side-nav a {
+  color: #0ff;
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.side-nav a:hover {
+  color: var(--secondary-ac);
+  text-shadow: 0 0 8px var(--secondary-ac);
+}
+/*
+    /* Side Navbar *//*
+nav {
+  position: fixed;
+  top: 50%;
+  left: -1rem; /* small offset from edge *//*
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center links so rotation looks uniform *//*
+  gap: 7rem; /* smaller, more visually even *//*
+  font-size: 0.5vw;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+@media (max-width: 1300px) {
+  nav {
+    font-size: 0.4rem;
+  }
+}
+
+nav a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  user-select: none;
+  transform: rotate(-90deg);
+  display: inline-block; /* ensures padding works correctly */
+  /*padding: 10px;  correct syntax *//*
+  padding: 3px;
+}
+
+nav a:hover {
+  color: var(--secondary-ac);
+  text-shadow: 0 0 8px var(--secondary-ac);
+} */
+
+
+  /* Custom 8-bit cursor */
+
+/* Click particles */
+.particle {
+  position: fixed;
+  width: 100px; /* bigger for impact */
+  height: 100px;
+  /* background: #ff00ff; */
+  background: #ffffff;
+  /* image-rendering: pixelated; */
+  pointer-events: none;
+  z-index: 99999;
+  /* filter: invert(1) brightness(2); */
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  width: var(--cursor-size, 24px);
+  height: var(--cursor-size, 24px);
+  background-image: var(--cursor-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  image-rendering: pixelated;
+  transform: translate(-100px, -100px);
+  will-change: transform, background-image;
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border: 2px solid #000000;
+  border-radius: 50%; /* makes it a circle */
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 99999;
+}
+
+
+.card-stack {
+  width: 20vw;
+  height: 20vw;
+  position: relative;
+  display: grid;
+  place-content: center;
+  user-select: none;
+  touch-action: none;
+  transform-style: preserve-3d;
+}
+
+:root {
+  --card-perspective: 1000px;
+  --card-z-offset: 32px;
+  --card-y-offset: -1vw;
+  --card-max-z-index: 100;
+  --card-swap-duration: 0.3s;
+  --swipe-y: 0px;
+  --swipe-rotate-x: 0deg;
+}
+
+.card {
+  cursor: grab;
+  /* background-color: #eee; */
+  display: grid;
+  place-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #99a;
+  border-radius: 0.3rem;
+  z-index: calc(var(--card-max-z-index) - var(--i));
+  transform: perspective(var(--card-perspective))
+    translateZ(calc(-1 * var(--card-z-offset) * var(--i)))
+    translateY(calc(var(--card-y-offset) * var(--i) + var(--swipe-y, 0px)))
+    rotateX(var(--swipe-rotate-x, 0deg));
+  transition: transform var(--card-swap-duration) ease, opacity var(--card-swap-duration) ease;
+  will-change: transform;
+  /* box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.15); */
+  border: 2px solid rgba(0, 0, 0,1);
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes it fill the card without stretching */
+  pointer-events: none; /* prevents blocking clicks/drag */
+}
+
+/* background image (bottom layer) */
+.card-bg {
+  mix-blend-mode: normal;
+  z-index: 1;
+  filter: url("#pixelateStr3") saturate(1);
+}
+
+/* noise texture overlay */
+.card-noise {
+  --noise: url("https://music.manz.dev/images/noise.png");
+  --shine: linear-gradient(130deg, transparent 80%, #5554 90%, transparent 100%);
+  background: #0c0c0c;
+  background-image: var(--shine), var(--noise);
+  background-blend-mode: lighten, soft-light;
+  opacity: 0.1; /* tweak if needed */
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+/* plastic texture overlay */
+.card-overlay {
+    position: absolute;
+  /* mix-blend-mode: exclusion; */
+  opacity: 1; /* tweak if needed */
+  z-index: 3;
+  background: url("PLASTIC_WRAP.png");
+  width: 100%;
+  height: 100%;
+}
+
+.num-pos {
+  visibility: hidden;
+  position: absolute;
+  /* mix-blend-mode: exclusion; */
+  opacity: 1; /* tweak if needed */
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  font-family: "Love Ya Like A Sister", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 100px;
+  /* color: #f0f; */
+  /* text-shadow: 0 0 18px rgb(255, 103, 255); */
+  text-align: right;
+  align-items: center;
+  display: flex;
+  justify-content: right;
+  top: -35%;
+  left: -5%;
+}
+
+.vinyl-divider {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #000;
+  inset: 0;
+}
+
+.vinyl-divider-header {
+  z-index: -10;
+  width: 7vw;
+  height: 1.1vw;
+  position: absolute;
+  background-color: var(--color,0);
+  top: -1.1vw;
+  left: var(--divider-left, 0);
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
+  border-radius: 10px 10px 0px 0px;
+}
+
+.vinyl-divider-header span {
+  font-family: 'Press Start 2P', cursive;
+  padding-top: 0.2vw;
+  font-size: 0.5vw; /* readable on all screens */
+  font-weight: 100;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap; /* prevent wrapping in small header */
+}
+
+
+/* .a { background: linear-gradient(45deg, #32de84, #deb); }
+.b { background: linear-gradient(45deg, #cf8bf3, #fdb99b); }
+.c { background: linear-gradient(45deg, #ea52ca, #8ed5f0); }
+.d { background: linear-gradient(45deg, #967edf, #89ffe3); }
+.e { background: linear-gradient(45deg, #4ecde2, #faffd2); }
+.f { background: linear-gradient(45deg, #a4ffbd, #ffd89b); } */
+
+.shadow {
+  position: absolute;
+  bottom: -10vw;         /* slightly below card */
+  left: 50%;           /* center horizontally */
+  transform: translateX(-50%) rotateX(90deg); 
+  width: 90%;          /* relative to card width */
+  height: 10vw;        /* thin oval shadow */
+  background: rgba(0,0,0,.1);
+  border-radius: 50px;
+  z-index: 1;           /* behind icon/content */
+  filter: blur(50px);    /* softer shadow */
+  pointer-events: none; /* ignore for interaction */
+}
+
+
+/* Info Panels */
+.info-panels {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  perspective: 1000px;
+  overflow: hidden;
+  /* pointer-events: none; */
+}
+
+.info {
+  position: absolute;
+  display: flex; /* keep it flex for alignment */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transform: translateY(0%); /* slide back up when hiding */
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+	transform-style: preserve-3d;
+  overflow: visible;
+}
+
+.info.visible {
+	transform-style: preserve-3d;
+  overflow: visible;
+
+  opacity: 1;
+  transform: translateY(0); /* slide to normal position */
+}
+
+.info.hiding {
+		transform-style: preserve-3d;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(-200%); /* slide back up when hiding */
+}
+
+.main-container {
+  position: relative;   /* establish positioning context */
+  width: 100%;
+  height: 100%;
+  padding: 5vw;
+  display: flex;
+}
+
+.left-panel,
+.right-panel {
+  position: relative;
+  height: 20vw;
+  /* width: 20vw; */
+  aspect-ratio: 1;
+  /* min-height: 30vh; */
+  border-radius: 0.2vw;
+  background-color: rgba(0,0,0,0.025); 
+  /* box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05); */
+  backface-visibility: hidden;
+  pointer-events: auto;
+  user-select: all;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  /* border: 1px solid rgba(196, 193, 193, 0.1); */
+  /* border: 1px solid black; */
+  }
+
+.left-panel {
+	transform: translateX(-60%) rotateY(0deg); 
+	animation: rotateLeftAfterInfo 2s ease-in-out;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+  color: #000;
+}
+
+.right-panel {
+	transform: translateX(0vw) translateY(0vw);
+  animation: vinyl-first 4s ease-in-out;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0rem 0rem;
+  color: #000;
+}
+@keyframes vinyl-first {
+  0% { transform: translateX(37vw) translateY(12.5vh); }
+  30%  { transform: translateX(0vw) translateY(12.5vh); }
+  60%  { transform: translateX(0vw) translateY(12.5vh); }
+  90%  { transform: translateX(0vw) translateY(0); }
+} 
+
+
+.shadow-left-panel {
+	position: absolute;
+	bottom: -15%; /* slightly below card */
+	left: 50%; /* center horizontally */
+	transform: translateX(-50%);
+	width: 90%; /* relative to card width */
+	height: 3rem; /* thin oval shadow */
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 50%;
+	z-index: -1; /* behind icon/content */
+	filter: blur(20px); /* softer shadow */
+	pointer-events: none; /* ignore for interaction */
+}
+
+.shadow-right-panel {
+	position: absolute;
+	bottom: -15%; /* slightly below card */
+	left: 50%; /* center horizontally */
+	transform: translateX(-50%);
+	width: 90%; /* relative to card width */
+	height: 1rem; /* thin oval shadow */
+	background: rgba(0, 0, 0, 0.25);
+	border-radius: 50%;
+	z-index: -1; /* behind icon/content */
+	filter: blur(15px); /* softer shadow */
+	pointer-events: none; /* ignore for interaction */
+}
+
+
+.box {
+	top: 40%;
+	width: 20vw;
+	height: 20vw;
+	position: relative;
+	transform-style: preserve-3d;
+	perspective: 1000px;
+	transform: rotateX(0deg) translateZ(0px) scaleX(1) scaleZ(1);
+}
+
+/* Shared styles for all faces */
+.box > div {
+	position: absolute;
+	/* 	background: rgba(100, 150, 255, 0.7); */
+	/* 	background: rgba(255, 255, 255, 1); */
+	border: 2px solid rgba(0,0,0,.1);
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	color: #fff;
+  border-radius: 2px 2px 4px 4px;
+}
+
+/* Front face */
+.front {
+	transform: translateZ(0rem) scale(1);
+	z-index: 7;
+	background: red;
+	width: 20vw;
+	height: 11vw;
+	background: #D9D9D9;
+  box-shadow: inset 0 -10px 50px rgba(0,0,0,.1);
+  filter: brightness(0.99);
+}
+
+.texture {
+  height: 100%;
+  width: 100%;
+  /* background-image: url("bg.png"); */
+  background-image: url("005.png");
+  /* filter: invert(1); */
+  opacity: 1;
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  mix-blend-mode: overlay;
+  position: absolute;
+  z-index: 0;
+}
+
+.texture::after {
+  content: '';
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  /* background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 50%); */
+}
+
+/* Left face */
+.left {
+	width: 6vw;
+	height: 11vw;
+	transform: rotateY(90deg) translateZ(-3vw) translateX(3vw) skewY(-30deg)
+		translateY(-1.7vw);
+	z-index: -2;
+	background: blue;
+	filter: brightness(0.75);
+	background: var(--bg-color);
+  box-shadow: inset 15px -10px 70px rgba(0,0,0,.5);
+}
+
+/* Right face */
+.right {
+	width: 6vw;
+	height: 11vw;
+	transform: rotateY(90deg) translateZ(17vw) translateX(3vw) skewY(-30deg)
+		translateY(-1.7vw);
+	z-index: -2;
+	background: blue;
+	filter: brightness(0.75);
+	background: var(--bg-color);
+  box-shadow: inset 15px -10px 70px rgba(0,0,0,.5);
+}
+
+
+/* ------------------------------ */
+/* RIGHT PANEL STYLING            */
+/* ------------------------------ */
+
+/* Optional project media preview */
+.right-panel .media {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.3rem;
+  background: rgba(0, 0, 0, 0);
+  border: 2px solid rgb(179, 179, 179);
+  /* backdrop-filter: blur(5px); */
+  overflow: hidden;
+  box-shadow: 10px 0px 20px rgba(0,0,0,0.2);
+  /* margin-bottom: 1.5rem; */
+  /* filter: grayscale(1); */
+  z-index: 2;
+}
+
+
+.blob-border-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* If using an image */
+.right-panel .media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* If using a video */
+.right-panel .media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right panel text area */
+.right-panel .details {
+  width: 90%;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.vinyl-record {
+  position: absolute;
+  width: 98%;
+  height: 98%;
+  top: 1%;
+  border-radius: 100%;
+  background-image: url("vinyltexture.png");
+  background-size: cover;
+  transform: rotateZ(0deg);
+  animation: spinning-record 2s infinite linear;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+@keyframes vinyl-record-third {
+  0% { left: 0vw; }
+  35% { left: 0vw; }
+  65% { left: 15vw; }
+  /* 70%  { left: 22.5vw; } */
+} 
+
+@keyframes spinning-record {
+  0% { transform: rotateZ(0deg) }
+  100% { transform: rotateZ(360deg) }
+} 
+
+.vinyl-record-shadow {
+	position: absolute;
+	bottom: -15%; /* slightly below card */
+	left: 50%; /* center horizontally */
+	transform: translateX(-50%);
+	width: 90%; /* relative to card width */
+	height: 0.4rem; /* thin oval shadow */
+	background: rgba(0, 0, 0, 0.25);
+	border-radius: 50%;
+	z-index: -1; /* behind icon/content */
+	filter: blur(10px); /* softer shadow */
+	pointer-events: none; /* ignore for interaction */
+  animation: record-shadow 6s ease-in-out;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+} 
+
+@keyframes record-shadow {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+} 
+
+
+.record-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 34%;
+  height: 34%;
+  /* background-color: var(--bg-color); */
+  border-radius: 100%;
+  /* visibility: hidden; */
+}
+
+.media-vinyl-center {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background: rgba(0, 0, 0, 0);
+  /* border: 1px solid black; */
+  /* backdrop-filter: blur(5px); */
+  overflow: hidden;
+  /* margin-bottom: 1.5rem; */
+  /* filter: grayscale(1) brightness(0.75); */
+}
+
+.media-vinyl-center img{
+  /* position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 25vw;
+  height: 25vw; */
+  width: 100%;
+  height: 100%;
+}
+
+.vinyl-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 17vw;
+  transform: translateX(0%) rotateY(0deg);
+  animation: vinyl-jacket-second 4s ease-out;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+  /* filter: grayscale(1); */
+}
+
+.vinyl-record-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 15vw;
+  transform: rotateZ(0deg);
+  animation: vinyl-record-third 4s ease-out;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+.vinyl-cover-texture {
+  position: absolute;
+  width: 98%;
+  height: 98%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-image: url("VinylCoverTexture.png");
+  background-size: cover;
+  box-shadow: 10px 0px 20px rgba(0,0,0,0.1);
+}
+
+@keyframes vinyl-jacket-second {
+  0% { left: 0vw; }
+  20% { left: 0vw; }
+  45%  { left: 15vw; }
+} 
+
+.vinyl-cover-shadow {
+	position: absolute;
+	bottom: -15%; /* slightly below card */
+	left: 50%; /* center horizontally */
+	transform: translateX(-50%);
+	width: 90%; /* relative to card width */
+	height: 1rem; /* thin oval shadow */
+	background: rgba(0, 0, 0, 0.25);
+	border-radius: 50%;
+	z-index: -1; /* behind icon/content */
+	filter: blur(15px); /* softer shadow */
+	pointer-events: none; /* ignore for interaction */
+  animation: vinyl-cover-shadow 3s ease-in-out;
+  animation-delay: 0s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+@keyframes vinyl-cover-shadow {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+} 
+
+.vinyl-center-texture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("vinylcentertexture.png");
+  background-size: cover;
+opacity: 0;
+}
+
+.media .small {
+  background-color: var(--secondary-ac);
+}
+
+.pixel-filter-svg {
+  position: absolute;
+  pointer-events: none;
+}
+
+.info-container {
+  position: absolute;
+  /* top: 50%; */
+  right: 0;              /* aligns to padding edge */
+  /* transform: translateY(-50%); */
+  margin-right: 5vw;
+  width: 32.5vw;
+  height: calc(100% - 10vw);
+  /* background-color: red; */
+  /* border: 1px solid red; */
+  overflow: visible;
+  display: flex;
+}
+
+
+.desc-container {
+  position: relative;
+  /* top: 50%; */
+  right: 0;              /* aligns to padding edge */
+  /* transform: translateY(-50%); */
+  /* margin-right: 5vw; */
+  width: 100%;
+  height: auto;
+  /* background-color: red; */
+  /* border: 1px solid red; */
+  overflow: hidden;
+}
+
+/* Title */
+.title {
+  position: relative;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3.4vw; /* Adjust the value (e.g., 4.3vw) until it fits on one line */
+  white-space: nowrap; /* Prevents the text from wrapping to a new line */
+  font-weight: 700;
+  text-align: center;
+  top: -50%;
+  width: 100%;
+  height: 4.4vw;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* text-shadow: 0 3px 6px rgba(0,0,0,0.25); */
+  animation: title-drop 2s ease-out;
+  animation-delay: 2s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+@keyframes title-drop {
+  0% { top: -15% }
+  100% { top: 1% }
+} 
+
+.title-highlight {
+  position: relative;
+  width: 0%;
+  height: 4vw;
+  background-color: var(--secondary-ac);
+  opacity: 0.35;
+  top: 0%;
+  left: -2.5%;
+  transform: translateX(0%) translateY(-100%);
+  z-index: -10;
+  animation: title-highlight 1s ease-out;
+  animation-delay: 4s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+@keyframes title-highlight {
+  0% { width: 0% }
+  100% { width: 101% }
+} 
+
+/* Subtitle */
+.subtitle {
+  position: relative;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5vw;
+  font-weight: 300;
+  opacity: 0.85;
+  width: 0;
+  text-align: left;
+  left: -50%;
+  padding: 1rem 0rem 1rem 0rem;
+  opacity: .75;
+  animation: descr-anim 1s ease-out;
+  animation-delay: 4.25s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+@keyframes subtitle-anim {
+  0% { width: 0%; left: -50%;}
+  100% { width: 100%; left: 0; }
+} 
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('fonts/MyCustomFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Description text */
+.descr {
+  position: relative;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5vw;
+  font-weight: 300;
+  line-height: 2;
+  width: 0;
+  left: -8vw;
+  /* padding: 0 2.5rem; */
+  margin-top: 1rem;
+  opacity: 1;
+  color: #000;
+  animation: descr-anim 1s ease-out;
+  animation-delay: 4.5s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+@keyframes descr-anim {
+  0% { width: 0%; left: -8vw;}
+  100% { width: 100%; left: 0; }
+} 
+
+.more-container {
+  position: absolute;
+  /* top: 55%; */
+  width: 52vw;
+  height: calc(100% - 10vw);
+  /* border: 2px solid blue; */
+  overflow: visible;
+}
+
+
+.cutoff-container {
+  position: absolute;
+  width: 100%;
+  height: 0vw;
+  bottom: 0;
+  overflow: hidden;
+  animation: cutoff-container-open 2.25s ease-out;
+  animation-delay: 3.25s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+@keyframes cutoff-container-open {
+  0% { height: 0vw; }
+  100% { height: 16.9vw; }
+} 
+
+.bottom-title {
+  position: relative;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8.4vw; /* Adjust the value (e.g., 4.3vw) until it fits on one line */
+  white-space: nowrap; /* Prevents the text from wrapping to a new line */
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  top: 26%;
+  width: 100%;
+  height: 4.4vw;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* text-shadow: 0 3px 6px rgba(0,0,0,0.25); */
+}
+
+.back-bottom-title {
+  position: relative;
+  font-family: "Vina Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15.1vw; /* Adjust the value (e.g., 4.3vw) until it fits on one line */
+  white-space: nowrap; /* Prevents the text from wrapping to a new line */
+  font-weight: 700;
+  color: rgba(158, 158, 158, 0.25);
+  text-align: center;
+  vertical-align: middle;
+  transform: scaleY(1.5) scaleX(1.787);
+  top: -55%;
+  width: 100%;
+  height: 10vw;
+  letter-spacing: 1px;
+  /* text-shadow: 0 3px 6px rgba(0,0,0,0.25); */
+  z-index: -20;
+}
+
+.front-bottom-title {
+  position: absolute;
+  font-family: "Corinthia", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 9.4vw; /* Adjust the value (e.g., 4.3vw) until it fits on one line */
+  white-space: nowrap; /* Prevents the text from wrapping to a new line */
+  font-weight: 700;
+  color: var(--secondary-ac);
+  text-align: center;
+  vertical-align: middle;
+  top: 21%;
+  width: 100%;
+  height: 10vw;
+  letter-spacing: 1px;
+  transform: scaleY(1);
+  text-shadow: 0 0px 20px var(--secondary-ac);
+  z-index: 0;
+}
+
+.cta-container {
+  position: absolute;
+  width: 100%;
+  margin-top: auto;
+  bottom: -50%;
+  margin-bottom: 0.3vw;
+  animation: cta-container-open 2.25s ease-out;
+  animation-delay: 3.25s; /* wait for .info.visible animation to finish */
+	animation-fill-mode: forwards; /* keep final state */
+}
+
+@keyframes cta-container-open {
+  0% { bottom: -50%; }
+  100% { bottom: 0; }
+} 
+
+
+.proj-link-cont {
+  display: grid;
+  width: 100%;
+  padding: 5% 0 0 0 ;
+  justify-items: stretch;
+  align-items: stretch;
+  justify-content: center;
+  align-content: center;
+}
+
+.two-column {
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5vw;
+}
+
+.one-column {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+/* Links */
+.proj-link-cont a {
+  display: flex;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5vw;
+  /* padding: 2.25rem 4rem; */
+  width: 100%;
+  height: 4vw;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid black;
+  color: #000;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: relative;  /* needed for ::before */
+  overflow: hidden;    /* contain fill effect */
+  /* background: var(--bg-color); */
+  color: #000000;
+  cursor: none;
+  /* box-shadow: 0 0 20px rgb(12, 12, 12, .75); */
+  transition: color 0.3s, box-shadow 0.3s;
+}
+
+.proj-link-cont a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.proj-link-cont a:hover {
+  color: var(--bg-color);
+  /* box-shadow: 0 0 20px #f0f; */
+    /* background: rgb(19, 19, 19); */
+      box-shadow: 0 0 20px rgb(12, 12, 12, .75);
+
+}
+
+.proj-link-cont a:hover::before {
+  left: 0;
+}
+
+
+.page-divider {
+  position: absolute;
+  background-color: var(--secondary-ac);
+  bottom: 0vw;
+  width: 100%;
+  height: 1vw;
+}
+
+#screen2 {
+  position: absolute;
+  background: var(--bg-color);
+  top: 100%;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; /* allow 3D rotation */
+  overflow: visible;    /* prevent clipping */
+  /* background-size: cover;
+  background-image: url("005.png");
+  /* background-image: url("noisegif.gif"); */
+  /* filter: invert(1); */
+  opacity: 1;
+  /* background-image: url("bgdarknoise.png"); */
+  /* background-size: cover;
+  mix-blend-mode: overlay; */
+  position: absolute;
+  z-index: -99999999;
+}
+
+
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+}
+
+/* LEFT IMAGE */
+.image-container {
+  width: 52vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: #000; */
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  transition: opacity 0.1s ease;
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1);
+  border: 2px solid black;
+}
+
+  /* RIGHT LYRICS */
+.lyrics-container {
+  width: 32.5vw;
+  height: 100vh;
+  overflow-y: hidden;  /* always show scrollbar */
+  padding: 2vw;
+  scroll-behavior: smooth;
+  display: block;  /* not flex */
+}
+
+.lyrics {
+  display: flex;
+  font-family: 'circular', normal;
+  font-size: 1.5vw;
+  flex-direction: column;
+  gap: 1.5vw;
+  padding-top: 50vh;
+  padding-bottom: 50vh;
+  /* remove min-height: 100% and justify-content: center */
+  text-align: center;
+}
+
+.line {
+  /* font-size: 22px; */
+  opacity: 0; /* base opacity overridden by JS */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  filter: blur(5px); /* base blur overridden by JS */
+  text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.line:hover {
+  opacity: 1;
+  filter: blur(1px);
+}
+
+.line.active {
+  /* font-size: 1.5vw; */
+  font-weight: bold;
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* fade edges like Spotify */
+.lyrics-container::before,
+.lyrics-container::after {
+  content: "";
+  position: sticky;
+  left: 0;
+  right: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.lyrics-container::before {
+  top: 0;
+  background: linear-gradient(to bottom, #000000, transparent);
+}
+
+.lyrics-container::after {
+  bottom: 0;
+  background: linear-gradient(to top, #000000, transparent);
+}
+
+i {
+  font-size: 1rem;
+  padding: 0 1rem;
+}
+
+
+/* .footer {
+  position: absolute;
+  background-color: var(--accent-color);
+  bottom: -125%;
+  width: 100%;
+  height: 25%;
+  border-radius: 2vw 2vw 0 0;
+} */
+
+</style>
+</head>
+
+<body>
+  <div class="bg"></div>
+
+  <!-- Top Nav -->
+  <div id="top-nav">
+      <!-- <div class="logo">JACK VILLANOVA</div>
+      <div class="portfolio-info">
+        <span>Portfolio</span>
+        <span>'25</span>
+      </div> -->
+    </div>
+
+  <div id="screen">
+
+  <section class="info-panels">      
+    <div class="main-container">
+      <div class="more-container"> 
+        <div class="cutoff-container">
+          <h1 class="bottom-title">BLANK<div class="bottom-title-highlight"></div></h1>     
+          <h1 class="back-bottom-title">BLANK</h1>
+          <h1 class="front-bottom-title">Blank</h1>
+        </div>
+      </div>
+      <div class="right-panel">
+        <div class="shadow-right-panel"></div>
+        <div class="vinyl-wrapper">
+          <div class="vinyl-record-wrapper">
+            <div class="vinyl-record">
+              <div class="record-center">
+                <div class="media-vinyl-center">
+                  <img src="images/BLANK_Vinyl_Center.png" />
+                </div>
+                <div class="vinyl-center-texture"></div>
+              </div>
+            </div>
+            <div class="vinyl-record-shadow"></div>
+          </div>
+          <div class="vinyl-cover-texture">
+            <div class="vinyl-cover-shadow"></div>
+          </div>
+        </div>
+        <!-- NOISE OVERLAY IMAGE -->
+          <!-- <img class="card-noise" src="https://music.manz.dev/images/noise.png" /> -->
+          <!-- PLASTIC-LOOK OVERLAY IMAGE -->
+          <img class="card-overlay" src="PLASTIC_WRAP_1.png" />
+        <div class="media">
+          <!-- Example: image placeholder -->
+          <!-- <img src="rushhour.png" alt="Rush Hour gameplay preview"> -->
+          <img src="images/BLANK_VinylCoverArt.png" class="cover">
+
+          <!-- Example: looping short demo video -->
+          <!-- <video src="rushhour-demo.mp4" autoplay loop muted></video> -->
+        </div>
+<!-- 
+        <div class="details">
+          <strong>Core Systems Breakdown:</strong>
+          <br><br>
+
+          • <b>Traffic Simulation</b> — Cars dynamically spawn, despawn, and react using a lightweight raycast-based AI system.<br>
+          • <b>Scoring System</b> — Players earn points for risky near-misses, sustained speed, and combo chains.<br>
+          • <b>Procedural Difficulty</b> — Traffic density, speed variation, and AI aggression scale with player performance.<br>
+          • <b>Optimized Mobile Controls</b> — Tilt, touch, and swipe input systems designed for low latency.<br>
+          • <b>Layered Audio</b> — Engine SFX blend with wind, tire friction, and impact cues for immersion.<br>
+          • <b>UI & Visual Polish</b> — Smooth transitions, animated score pop-ups, and clean typography.<br><br>
+
+          This project helped refine my skills in system design, performance optimization,
+          and building scalable gameplay loops.
+        </div> -->
+      </div>
+      <div class="info-container">
+        <div class="desc-container">
+          <!-- <h1 class="title">RUSH HOUR<div class="title-highlight"></div></h1> -->
+          <h6 class="subtitle">Coming Soon <span class="secondary-ac">|</span> 
+            ? <span class="secondary-ac">|</span> #### - Ongoing</h6>
+          <p class="descr">
+            <!-- <br><br>
+            Rush Hour is a game based on practicing parking in a fun way. 
+            Starting from a high school project, it quickly turned into a personal passion project.
+            This journey was extremely difficult as I was learning the whole way while working on this solely on my own.
+            I had a multitude of obstacles that I would spend anywhere from minutes to months tackling.
+            In the end, I created this masterpiece that I am very proud of.
+            <br><br>
+            Rush Hour uses realistic driving systems to best immerse the player in learning how to park.
+            In a designated amount of time, the player has to travel a set distance before attempting
+            to park before the timer ends. Rush Hour uses the help of Unity's API. 
+            This integrates an economy, a leaderboard system, and user authentication.
+            This gives the players a reason to, not only be competitive but, to also play the game more than once, unlike some indie games.        
+            <br><br> -->
+  <!-- 
+            • <span class="accent-color"><b>When</b></span> — Started as an “End of the Year” project for a High School game development class
+            which later became a personal project to learn C# further and how to create an aesthetic UI.<br> -->
+
+            This project is currently being worked on and will be up soon!</p>
+          </div>
+          <div class="cta-container">
+            <div class="proj-link-cont two-column">
+              <a href="projects.html"><i class="hn hn-angle-left"></i> GO BACK</a> 
+              <a href=""> / / / </a>
+            </div>
+            <div class="proj-link-cont one-column">
+              <a href="#screen2"><i class="hn hn-angle-down"></i> SCROLL DOWN <i class="hn hn-link"></i></a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="page-divider"></div>
+  <div id="screen2">
+  <div class="bg"></div>
+    <div class="info-panels">
+      <div class="main-container">
+        <div class="container">
+          <div class="image-container">
+            <img id="mainImage" src="https://picsum.photos/id/1015/600/400">
+          </div>
+          <div class="lyrics-container" id="lyricsContainer">
+            <div class="lyrics" id="lyrics"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="footer"></dgetElementById("cursor");
+const screen = document.getElementById("screen");iv> -->
+<div id="side-nav"></div>
+
+<div id="socials"></div>
+      
+<!-- custom cursor -->
+<div class="cursor" id="cursor"></div>
+
+<audio id="bgMusic" autoplay preload="auto"></audio>
+
+<audio id="hover1" src="hover1.mp3" preload="auto"></audio>
+
+<script src="fetchcomponents.js"></script>
+
+<script src="cursor.js"></script>
+
+<script>
+// List of particle images
+const particleImgs = [
+  "music_note_1.png",
+  "music_note_2.png",
+  "music_note_3.png"
+];
+
+// Scale percent variable to control particle size
+
+document.addEventListener("mousemove", e => {
+  cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+});
+
+document.addEventListener("click", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+
+  const numParticles = 5; 
+  const minRadius = 35;  
+  const maxRadius = 200;
+  const numWaves = 3;
+  const waveDelay = 50;
+
+  for (let w = 0; w < numWaves; w++) {
+    setTimeout(() => {
+      for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement("img");
+
+        // Pick random image
+        particle.src = particleImgs[Math.floor(Math.random() * particleImgs.length)];
+        particle.className = "particle";
+
+        // Ensure transparency
+        particle.style.background = "transparent";
+        particle.style.position = "fixed";
+        particle.style.pointerEvents = "none";
+        particle.style.zIndex = "999";
+        particle.style.imageRendering = "pixelated";
+
+        // Random size with scalePercent
+        const scalePercent = 0.2; // 1 = original, 0.5 = half size, 2 = double size
+const baseSize = 100; // original size of your image
+const size = baseSize * scalePercent * (Math.random() * 0.5 + 0.75); // slight random variation
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+
+
+        screen.appendChild(particle);
+
+        // Random angle for spread
+        const angle = Math.random() * 2 * Math.PI + w * 0.15;
+        const distance = minRadius + Math.random() * (maxRadius - minRadius);
+        const destX = Math.cos(angle) * distance;
+        const destY = Math.sin(angle) * distance;
+
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+
+        // Animate particle
+        const anim = particle.animate([
+  { transform: `translate(0,0)`, opacity: 1 },
+  { transform: `translate(${destX}px, ${destY}px)`, opacity: 0 }
+], {
+  duration: 1000 + Math.random() * 400,
+  easing: "cubic-bezier(0.25,1,0.5,1)"
+});
+
+        anim.onfinish = () => particle.remove();
+      }
+    }, w * waveDelay);
+  }
+
+  // --- Multiple ripples
+  const numRipples = 5;
+  for (let i = 0; i < numRipples; i++) {
+    const ripple = document.createElement("div");
+    ripple.className = "ripple";
+    ripple.style.left = `${x - 10}px`;
+    ripple.style.top = `${y - 10}px`;
+    screen.appendChild(ripple);
+
+    const scale = 3 + i * 2;
+    const duration = 500 + i * 100;
+
+    const anim = ripple.animate([
+      { transform: "scale(0.5)", opacity: 0.1 },
+      { transform: `scale(${scale})`, opacity: 0 }
+    ], {
+      duration: duration,
+      easing: "ease-out"
+    });
+
+    anim.onfinish = () => ripple.remove();
+  }
+
+  // --- Screen shake
+  const intensity = 5;
+  const keyframes = [
+    { transform: "translate(0,0)" },
+    { transform: `translate(${Math.random()*intensity-intensity/2}px,${Math.random()*intensity-intensity/2}px)` },
+    { transform: `translate(${Math.random()*intensity-intensity/2}px,${Math.random()*intensity-intensity/2}px)` },
+    { transform: "translate(0,0)" }
+  ];
+  screen.animate(keyframes, { duration: 200, easing: "ease-out" });
+});
+
+const clickSFX = [
+  new Audio('click1.mp3'),
+  new Audio('click2.mp3'),
+  new Audio('click3.mp3')
+];
+
+document.addEventListener("click", e => {
+  // Play random click sound
+  const sound = clickSFX[Math.floor(Math.random() * clickSFX.length)];
+  sound.currentTime = 0; // restart in case it's still playing
+  sound.volume = .25;
+  sound.play();
+
+  const x = e.clientX;
+  const y = e.clientY;
+
+  // ... your particle & ripple code here ...
+});
+
+
+const data = [
+  { text: "-", img: "images/BLANK_Promo1.png" },
+  { text: '-', img: "images/BLANK_Promo1.png" },
+  { text: "-", img: "images/BLANK_Promo1.png" },
+  { text: "-", img: "images/BLANK_Promo1.png" }
+];
+
+const lyricsEl = document.getElementById("lyrics");
+const container = document.getElementById("lyricsContainer");
+const image = document.getElementById("mainImage");
+
+let currentIndex = 0;
+let autoScrollEnabled = true;
+let userInteracting = false;
+let autoScrollTimer;
+
+// CREATE LINES
+data.forEach((item, i) => {
+  const div = document.createElement("div");
+  div.className = "line";
+  div.innerText = item.text;
+  div.dataset.index = i;
+
+  // CLICK TO JUMP
+  div.addEventListener("click", () => {
+    userTakeover();
+    currentIndex = i;
+    setActive(currentIndex, true);
+  });
+
+  lyricsEl.appendChild(div);
+});
+
+const lines = document.querySelectorAll(".line");
+
+// SET ACTIVE
+container.addEventListener("scroll", () => {
+  userTakeover(); // your existing function
+  updateLyricStyles(); // NEW: update blur/opacity dynamically
+});
+
+// Also call it whenever you set active lyric programmatically
+function setActive(index, instant = false) {
+  lines.forEach(line => line.classList.remove("active"));
+  lines[index].classList.add("active");
+
+  // Image update
+  image.style.opacity = 0;
+  setTimeout(() => {
+    image.src = data[index].img;
+    image.style.opacity = 1;
+  }, 200);
+
+  const line = lines[index];
+  const offset = line.offsetTop - container.clientHeight / 2 + line.clientHeight / 2;
+
+  container.scrollTo({
+    top: offset,
+    behavior: instant ? "auto" : "smooth"
+  });
+
+  updateLyricStyles(); // NEW: update styles after scroll
+}
+
+// AUTO SCROLL LOOP
+function startAutoScroll() {
+  autoScrollTimer = setInterval(() => {
+    if (!autoScrollEnabled || userInteracting) return;
+
+    currentIndex++;
+
+    //  LOOP BACK TO START (FIX)
+    if (currentIndex >= data.length) {
+      currentIndex = 0;
+    }
+
+    setActive(currentIndex);
+  }, 10000);
+}
+
+// USER TAKEOVER (IMPORTANT FIX)
+function userTakeover() {
+  userInteracting = true;
+  autoScrollEnabled = false;
+
+  clearTimeout(resumeTimer);
+  resumeTimer = setTimeout(() => {
+    userInteracting = false;
+    autoScrollEnabled = true;
+  }, 2000); // resume after inactivity
+}
+
+let resumeTimer;
+
+// SCROLL DETECTION (IMPROVED)
+let isScrolling = false;
+
+container.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  if (isScrolling) return;
+  
+  isScrolling = true;
+  userTakeover();
+  
+  if (e.deltaY > 0) {
+    currentIndex = Math.min(currentIndex + 1, data.length - 1);
+  } else {
+    currentIndex = Math.max(currentIndex - 1, 0);
+  }
+  
+  setActive(currentIndex);
+  
+  setTimeout(() => { isScrolling = false; }, 10); // cooldown matches scroll animation
+}, { passive: false });
+
+["touchstart", "mousedown"].forEach(event => {
+  container.addEventListener(event, userTakeover);
+});
+
+// INIT
+setActive(0, true);
+startAutoScroll();
+
+function updateLyricStyles() {
+  lines.forEach((line, i) => {
+    const distance = Math.abs(i - currentIndex); // distance in lyric steps
+
+    if (i === currentIndex) {
+      line.style.opacity = 1;
+      line.style.filter = "none";
+    } else {
+      const opacity = Math.max(0, 0.33 - (distance * 0.10)); // fades to 0 by step 4
+      const blur = Math.min(5, distance * 5);
+      line.style.opacity = opacity;
+      line.style.filter = `blur(${blur}px)`;
+    }
+  });
+}
+
+</script>
+
+    
+</body>
+</html>

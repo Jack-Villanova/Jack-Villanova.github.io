@@ -1,0 +1,36 @@
+:root {
+  /* --bg-color: rgb(217,217,217); */
+  --bg-color: rgb(216, 211, 205);
+  --accent-color: rgb(39, 168, 253);
+
+  /* Lightspeed */
+  --lightspeed-ac: rgb(147,163,255);
+
+  /* Rush Hour */
+  --rushhour-ac: rgb(255,87,82);
+  
+  /* Porfolio */
+  /* --lightspeed-ac: rgb(123, 176, 255);
+
+  /* MetaTune */
+  /* --lightspeed-ac: rgb(123, 176, 255);
+
+  /* BLANK */
+  --blank-ac: rgb(158, 165, 170);
+}
+
+.accent-color {
+  color: var(--accent-color);
+  /* text-shadow: 0 0px 20px rgb(39, 167, 253, 0.5); */
+}
+
+/*
+✦•············································•✦
+━━━━━━━━┛ ✠    Lightspeed styling   ✠ ┗━━━━━━━━
+✦•············································•✦
+*/
+
+/* .lightspeed-ac {
+  color: rgb(133, 84, 84);
+  text-shadow: 0 0px 20px rgb(39, 167, 253, 0.5);
+} */
