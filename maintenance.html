@@ -4,8 +4,260 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="root.css">
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Vina+Sans&display=swap');
+@import url('https://unpkg.com/@hackernoon/pixel-icon-library/fonts/iconfont.css');
+    
+@font-face {
+  font-family: 'circular';
+  src: url('circular-std-medium-500.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves loading performance */
+}
+
+:root {
+  /* --secondary-ac: rgb(123, 176, 255); */
+  --secondary-ac: var(--accent-color);
+}
+
+.secondary-ac {
+  color: var(--secondary-ac);
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none; /* hide default cursor */
+  user-select: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-color);
+  /* background-image: url("bg.png"); */
+  /* background-image: url("010.png"); */
+  /* filter: invert(1); */
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  color: #000000;
+  font-family: 'circular', normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bg {
+  height: 100vh;
+  width: 100vw;
+  /* background-image: url("bg.png"); */
+  background-image: url("005.png");
+  /* filter: invert(1); */
+  opacity: 1;
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  mix-blend-mode: overlay;
+  position: absolute;
+  z-index: -99999999;
+}
+
+/* Glowing grid background (retro synthwave style) */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* background: 
+    linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); */
+  background-size: 60px 60px;
+  opacity: 0.15;
+}
+
+.bg-svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-svg svg {
+  height: 100%;   /* scale to browser height */
+  width: auto;    /* keep proportions */
+}
+
+/* Screen container for shake & ripple effects */
+#screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;           /* Add flex */
+    flex-direction: column;  /* Stack nav and hero vertically */
+    align-items: center;     /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    padding: 2.5rem;
+}
+
+/* Custom 8-bit cursor */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  width: var(--cursor-size, 24px);
+  height: var(--cursor-size, 24px);
+  background-image: var(--cursor-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  image-rendering: pixelated;
+  transform: translate(-100px, -100px);
+  will-change: transform, background-image;
+}
+
+.info-container {
+    width: 100%;
+    height: 100%;
+    min-width: 20rem;
+    min-height: 30rem;
+    max-width: 70rem;
+    max-height: 40rem;
+    /* background-color: red; */
+    /* border: 2px solid black; */
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    container-type: inline-size;
+    padding-bottom: 7%;
+}
+
+
+.bottom-title {
+  position: absolute;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 5.4vw; /* Adjust the value (e.g., 4.3vw) until it fits on one line */
+  white-space: nowrap; /* Prevents the text from wrapping to a new line */
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  /* top: 35%; */
+  width: auto;
+  height: auto;
+  height: 4.4vw;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 11%;
+  /* text-shadow: 0 3px 6px rgba(0,0,0,0.25); */
+}
+
+.back-bottom-title {
+  position: absolute;
+  font-family: "Vina Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  /* font-size: clamp(8rem, 60vw, 35.1rem); */
+  font-size: 75cqw;
+  white-space: nowrap; /* Prevents the text from wrapping to a new line */
+  font-weight: 700;
+  color: rgba(158, 158, 158, 0.25);
+  text-align: center;
+  vertical-align: middle;
+  /* transform: scaleY(1.5); */
+  /* top: -15%; */
+  width: auto;
+  height: auto;
+  letter-spacing: 10%;
+  text-indent: 3.3%;
+  /* text-shadow: 0 3px 6px rgba(0,0,0,0.25); */
+  z-index: -20;
+}
+
+.front-bottom-title {
+  position: absolute;
+  font-family: "Corinthia", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13.4vw; /* Adjust the value (e.g., 4.3vw) until it fits on one line */
+  white-space: nowrap; /* Prevents the text from wrapping to a new line */
+  font-weight: 700;
+  color: var(--secondary-ac);
+  text-align: center;
+  vertical-align: middle;
+  /* top: 21%; */
+  width: auto;
+  height: auto;
+  letter-spacing: 1px;
+  transform: scaleY(1);
+  text-shadow: 0 0px 20px var(--secondary-ac);
+  margin-top: 13%;
+  z-index: 0;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: #000000;
+  z-index: 10;
+  text-align: center;
+}
+
+.footer .dev-note {
+  text-align: center;
+  /* line-height: 1.2; */
+}
+
+</style>
 </head>
 <body>
-    <h1>under maintenance</h1>
+<div class="bg"></div>
+
+<div id="top-nav"></div>
+
+<div id="socials"></div>
+
+<div id="screen">
+
+<div class="info-container">
+    <!-- <h1>UNDER MAINTENANCE</h1>   -->
+    <h1 class="bottom-title">MAINTENANCE<div class="bottom-title-highlight"></div></h1>     
+    <h1 class="back-bottom-title">404</h1>
+    <h1 class="front-bottom-title">Under</h1>
+</div>
+
+<footer class="footer">
+    <div class="dev-note">Working on small errors . . .</div>
+</footer>
+
+<div class="cursor" id="cursor"></div>
+
+<script src="cursor.js"></script>
+
+<script src="fetchcomponents.js"></script>
 </body>
 </html>
