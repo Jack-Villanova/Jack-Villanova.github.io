@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Londrina+Sketch&family=Vina+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap');
+@import url('https://unpkg.com/@hackernoon/pixel-icon-library/fonts/iconfont.css');
+
+@font-face {
+  font-family: 'circular';
+  src: url('circular-std-medium-500.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves loading performance */
+}
+
 :root {
   /* --bg-color: rgb(217,217,217); */
   --bg-color: rgb(216, 211, 205);

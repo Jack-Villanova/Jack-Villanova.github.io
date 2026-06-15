@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="root.css">
+
+  <style>
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none; /* hide default cursor */
+  user-select: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-color);
+  /* background-image: url("bg.png"); */
+  /* background-image: url("010.png"); */
+  /* filter: invert(1); */
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  color: #000000;
+  font-family: 'circular', normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bg {
+  height: 100vh;
+  width: 100vw;
+  /* background-image: url("bg.png"); */
+  background-image: url("005.png");
+  /* filter: invert(1); */
+  opacity: 1;
+  /* background-image: url("bgdarknoise.png"); */
+  background-size: cover;
+  mix-blend-mode: overlay;
+  position: absolute;
+  z-index: -99999999;
+}
+
+    /* Custom 8-bit cursor */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  width: var(--cursor-size, 24px);
+  height: var(--cursor-size, 24px);
+  background-image: var(--cursor-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  image-rendering: pixelated;
+  transform: translate(-100px, -100px);
+  will-change: transform, background-image;
+}
+/* Click particles */
+.particle {
+  position: fixed;
+  width: 100px; /* bigger for impact */
+  height: 100px;
+  /* background: #ff00ff; */
+  background: #ffffff;
+  /* image-rendering: pixelated; */
+  pointer-events: none;
+  z-index: 99999;
+  /* filter: invert(1) brightness(2); */
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border: 2px solid #000000;
+  border-radius: 50%; /* makes it a circle */
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 99999;
+}
+
+.container {
+  /* background-color: red; */
+  width: auto;
+  height: 100%;
+  padding: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container span {
+  text-align: center;
+  font-family: "Londrina Sketch", sans-serif;
+  font-size: 40vw;
+}
+
+.container p {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  color: #000000;
+  text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<div id="top-nav"></div>
+
+<div class="container">
+  <span>404</span>
+  <p>page not found . . .</p>
+</div>
+
+<div id="side-nav"></div>
+
+<div id="socials"></div>
+
+<!-- custom cursor -->
+<div class="cursor" id="cursor"></div>
+
+<audio id="hover1" src="hover1.mp3" preload="auto"></audio>
+
+<script src="fetchcomponents.js"></script>
+
+<script src="cursor.js"></script>
+
+<script src="maintenance.js"></script>
+
+<script>
+
+// FOR RESETING USER PREF STORAGE //
+// localStorage.clear();
+
+
+// List of particle images
+const particleImgs = [
+  "music_note_1.png",
+  "music_note_2.png",
+  "music_note_3.png"
+];
+
+
+document.addEventListener("click", e => {
+  const x = e.clientX;
+  const y = e.clientY;
+
+  const numParticles = 5; 
+  const minRadius = 35;  
+  const maxRadius = 200;
+  const numWaves = 3;
+  const waveDelay = 50;
+
+  for (let w = 0; w < numWaves; w++) {
+    setTimeout(() => {
+      for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement("img");
+
+        // Pick random image
+        particle.src = particleImgs[Math.floor(Math.random() * particleImgs.length)];
+        particle.className = "particle";
+
+        // Ensure transparency
+        particle.style.background = "transparent";
+        particle.style.position = "fixed";
+        particle.style.pointerEvents = "none";
+        particle.style.zIndex = "999";
+        particle.style.imageRendering = "pixelated";
+
+        // Random size with scalePercent
+        const scalePercent = 0.2; // 1 = original, 0.5 = half size, 2 = double size
+const baseSize = 100; // original size of your image
+const size = baseSize * scalePercent * (Math.random() * 0.5 + 0.75); // slight random variation
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+
+
+        screen.appendChild(particle);
+
+        // Random angle for spread
+        const angle = Math.random() * 2 * Math.PI + w * 0.15;
+        const distance = minRadius + Math.random() * (maxRadius - minRadius);
+        const destX = Math.cos(angle) * distance;
+        const destY = Math.sin(angle) * distance;
+
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+
+        // Animate particle
+        const anim = particle.animate([
+  { transform: `translate(0,0)`, opacity: 1 },
+  { transform: `translate(${destX}px, ${destY}px)`, opacity: 0 }
+], {
+  duration: 1000 + Math.random() * 400,
+  easing: "cubic-bezier(0.25,1,0.5,1)"
+});
+
+        anim.onfinish = () => particle.remove();
+      }
+    }, w * waveDelay);
+  }
+
+  // --- Multiple ripples
+  const numRipples = 5;
+  for (let i = 0; i < numRipples; i++) {
+    const ripple = document.createElement("div");
+    ripple.className = "ripple";
+    ripple.style.left = `${x - 10}px`;
+    ripple.style.top = `${y - 10}px`;
+    screen.appendChild(ripple);
+
+    const scale = 3 + i * 2;
+    const duration = 500 + i * 100;
+
+    const anim = ripple.animate([
+      { transform: "scale(0.5)", opacity: 0.1 },
+      { transform: `scale(${scale})`, opacity: 0 }
+    ], {
+      duration: duration,
+      easing: "ease-out"
+    });
+
+    anim.onfinish = () => ripple.remove();
+  }
+
+  // --- Screen shake
+  const intensity = 5;
+  const keyframes = [
+    { transform: "translate(0,0)" },
+    { transform: `translate(${Math.random()*intensity-intensity/2}px,${Math.random()*intensity-intensity/2}px)` },
+    { transform: `translate(${Math.random()*intensity-intensity/2}px,${Math.random()*intensity-intensity/2}px)` },
+    { transform: "translate(0,0)" }
+  ];
+  screen.animate(keyframes, { duration: 200, easing: "ease-out" });
+});
+
+const clickSFX = [
+  new Audio('click1.mp3'),
+  new Audio('click2.mp3'),
+  new Audio('click3.mp3')
+];
+
+document.addEventListener("click", e => {
+  // Play random click sound
+  const sound = clickSFX[Math.floor(Math.random() * clickSFX.length)];
+  sound.currentTime = 0; // restart in case it's still playing
+  sound.volume = .25;
+  sound.play();
+
+  const x = e.clientX;
+  const y = e.clientY;
+
+  // ... your particle & ripple code here ...
+});
+
+const sfx = document.getElementById("hover1");
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("mouseenter", () => {
+    sfx.currentTime = 0; // restart sound
+    sfx.volume = 0.1;
+    sfx.play();
+  });
+});
+
+</script>
+
+    
+</body>
+</html>
