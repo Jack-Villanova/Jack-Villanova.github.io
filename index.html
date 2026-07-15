@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home</title>
+  <title>Personal Portfolio | Cybersecurity, Software Development, Website Development, Game Developer, Philosopher | University of Tampa | Sykes College of Business | B.S. Cybersecurity | Management Information Systems</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="root.css">
+  
+  <!-- <title>Concise, Keyword-Rich Page Title (50-60 chars)</title> -->
+  <meta name="description" content="">
+  
+  <!-- Canonical URL (important with custom domains) -->
+  <link rel="canonical" href="https://jackvillanova.com">
+  
+  <!-- Open Graph (social sharing / link previews) -->
+  <meta property="og:title" content="Jack Villanova's Personal Portfolio">
+  <meta property="og:description" content="">
+  <!-- <meta property="og:image" content="https://www.yoursite.com/images/preview.jpg"> -->
+  <meta property="og:url" content="https://jackvillanova.com">
+  <meta property="og:type" content="website">
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap');
-    @import url('https://unpkg.com/@hackernoon/pixel-icon-library/fonts/iconfont.css');
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap');
+  @import url('https://unpkg.com/@hackernoon/pixel-icon-library/fonts/iconfont.css');
     
 @font-face {
   font-family: 'circular';
@@ -90,8 +103,8 @@ body::before {
   width: auto;    /* keep proportions */
 }
 
-    /* Screen container for shake & ripple effects */
-    #screen {
+/* Screen container for shake & ripple effects */
+#screen {
   position: relative;
   width: 100%;
   height: 100%;
@@ -147,8 +160,8 @@ body::before {
   text-shadow: 0 0 8px var(--accent-color);
 }
 
-    /* Side Navbar */
-  nav {
+/* Side Navbar */
+nav {
   position: fixed;
   top: 50%;
   left: -1rem; /* small offset from edge */
@@ -180,7 +193,7 @@ nav a:hover {
 }
 
 
-    /* Side Navbar */
+/* Side Navbar */
 .socials {
   position: fixed;
   top: 50%;
@@ -234,70 +247,70 @@ nav a:hover {
 }
 
 
-    /* Hero section */
-    .hero {
-      text-align: center;
-      z-index: 2;
-      user-select: none;
-        position: absolute;
-      top: 25%;
-    }
+/* Hero section */
+.hero {
+  text-align: center;
+  z-index: 2;
+  user-select: none;
+    position: absolute;
+  top: 25%;
+}
 
-    .hero h1 {
-      font-size: 7vw;
-      line-height: 1;
-      /* background: linear-gradient(90deg, #ff00ff, #ffffff, #ff00ff); */
-      background-color: #000000;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      /* animation: glow 4s infinite linear; */
-      
-    }
+.hero h1 {
+  font-size: 7vw;
+  line-height: 1;
+  /* background: linear-gradient(90deg, #ff00ff, #ffffff, #ff00ff); */
+  background-color: #000000;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* animation: glow 4s infinite linear; */
+  
+}
 
-    .hero p {
-      margin-top: 1rem;
-      font-size: 2vw;
-      color: #535353;
-      letter-spacing: 2px;
-    }
+.hero p {
+  margin-top: 1rem;
+  font-size: 2vw;
+  color: #535353;
+  letter-spacing: 2px;
+}
 
-    socials {
-      position: absolute;
-      /* top: 2rem; */
-      left: 50%;
-      top: 100%;
-      transform: translate(-50%, 100%);
-      /* transform: translateY(-50%); */
-      display: flex;
-      gap: 5vw;
-      padding-top: 1rem;
-      font-size: 1.2rem;
-      font-family: 'Press Start 2P', cursive;
-      text-transform: uppercase;
-      z-index: 2;  
-            font-size: 0.75vw;    
-    }
+socials {
+  position: absolute;
+  /* top: 2rem; */
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 100%);
+  /* transform: translateY(-50%); */
+  display: flex;
+  gap: 5vw;
+  padding-top: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  z-index: 2;  
+        font-size: 0.75vw;    
+}
 
-    socials a {
-      color: rgb(0, 0, 0);
-      text-decoration: none;
-      transition: color 0.2s ease;
-      user-select: none;
+socials a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  user-select: none;
 
-    }
+}
 
-    socials a:hover {
-      color: var(--accent-color);
-      text-shadow: 0 0 8px var(--accent-color);
-    }
+socials a:hover {
+  color: var(--accent-color);
+  text-shadow: 0 0 8px var(--accent-color);
+}
 
-    @keyframes glow {
-      0% { text-shadow: 0 0 10px #f0f; }
-      50% { text-shadow: 0 0 25px #0ff, 0 0 50px #f0f; }
-      100% { text-shadow: 0 0 10px #f0f; }
-    }
+@keyframes glow {
+  0% { text-shadow: 0 0 10px #f0f; }
+  50% { text-shadow: 0 0 25px #0ff, 0 0 50px #f0f; }
+  100% { text-shadow: 0 0 10px #f0f; }
+}
 
-    /* Custom 8-bit cursor */
+/* Custom 8-bit cursor */
 .cursor {
   position: fixed;
   top: 0;
@@ -314,6 +327,7 @@ nav a:hover {
   transform: translate(-100px, -100px);
   will-change: transform, background-image;
 }
+
 /* Click particles */
 .particle {
   position: fixed;
@@ -461,9 +475,10 @@ spline-viewer {
     <div class="slanted-text" style="pointer-events: auto;"> 
       <p id="paraContent">
       I’m <span class="spec-text">JACK VILLANOVA</span>, a second-year cybersecurity student based in <span class="spec-text">Tampa, Florida</span> 
-      who loves solving puzzles and turning ideas into reality. <span class="spec-text">PERFECTIONISM</span> drives me as I focus on the small
-      details that make projects polished and complete. I have a background in a multitude of industries such as
-      <span class="spec-text">SOFTWARE DESIGN</span> and game dev as well as other passions <span class="dot-animation"></span>
+      interested in software security and cyber sales. <br>
+      I'm currently at LiFT as an Information Technology Intern. <br>
+      I have a background in <span class="spec-text">SOFTWARE DESIGN</span> and game development as well as other passions <span class="dot-animation"></span> <br>
+      You can view all my projects and their backgrounds here!
       </p>
     </div>
 
